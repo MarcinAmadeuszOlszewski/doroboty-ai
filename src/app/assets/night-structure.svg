@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <!-- Line-art scene for the Nocny błękit hero: posts with rope swags, truss towers and a tiled floor. Decorative only. -->
+  <g stroke="#8a9bc8" stroke-width="1.5">
+    <!-- truss towers -->
+    <path d="M120 40 L80 250 M120 40 L160 250 M93 180 L147 180 M100 140 L140 140 M107 100 L133 100"/>
+    <path d="M360 40 L320 250 M360 40 L400 250 M333 180 L387 180 M340 140 L380 140 M347 100 L373 100"/>
+    <path d="M120 40 L360 40"/>
+    <!-- tiled floor -->
+    <path d="M20 300 L460 300 M0 330 L480 330 M40 360 L440 360"/>
+    <path d="M240 270 L240 360 M180 270 L150 360 M300 270 L330 360 M120 270 L60 360 M360 270 L420 360"/>
+    <path d="M40 270 L440 270"/>
+  </g>
+  <g stroke="#7f95ff" stroke-width="2">
+    <!-- posts -->
+    <path d="M60 130 L60 290 M110 150 L110 285 M160 165 L160 280 M210 175 L210 276 M270 175 L270 276 M320 165 L320 280 M370 150 L370 285 M420 130 L420 290"/>
+    <!-- rope swags -->
+    <path d="M60 210 Q85 236 110 214 Q135 236 160 218 Q185 238 210 220"/>
+    <path d="M270 220 Q295 238 320 218 Q345 236 370 214 Q395 236 420 210"/>
+  </g>
+  <g fill="#7f95ff">
+    <circle cx="60" cy="128" r="4"/><circle cx="110" cy="148" r="4"/><circle cx="160" cy="163" r="4"/><circle cx="210" cy="173" r="4"/>
+    <circle cx="270" cy="173" r="4"/><circle cx="320" cy="163" r="4"/><circle cx="370" cy="148" r="4"/><circle cx="420" cy="128" r="4"/>
+  </g>
+</svg>

@@ -1,5 +1,7 @@
 # DoRoboty.ai design system — project instructions
 
+> **Superseded as the visual target (2026-11-06).** The application now uses **Nocny błękit** — see [GUI.md](../../GUI.md) and [.claude/skills/nocny-blekit](../../.claude/skills/nocny-blekit/SKILL.md). This directory and the Poster People kit remain as an immutable historical reference: the listing/offer anatomy, component families and responsive geometry below still describe the host markup, but colors, Geist Serif, pink actions and illustration are no longer required.
+
 **Poster People v1.0.0 is the required visual reference for new and changed screens.** It is the accepted rounded, illustrated listing/offer system with Geist Serif headings. Use this directory before choosing page composition, typography, color or component treatment. The previous theme guidance has been removed at Wojtek's request.
 
 This directory contains the complete immutable 67-file v1 agent kit and the receiving project's active integration guidance. The React application now has a host adaptation, mapped in [IMPLEMENTATION.md](IMPLEMENTATION.md). Treat current code as implementation to verify, not a second visual authority or proof of full acceptance. Apply the reference within the user's task scope; installing or updating guidance alone does not initiate a redesign.

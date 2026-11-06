@@ -1,3 +1,6 @@
+@import "@fontsource/ibm-plex-sans/400.css";
+@import "@fontsource/ibm-plex-sans/600.css";
+@import "@fontsource/ibm-plex-serif/300.css";
 @import "tailwindcss";
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
@@ -8,6 +11,7 @@
 @import "./records.css";
 @import "./application.css";
 @import "./interactions.css";
+@import "./nocny-blekit.css";
 
 @theme inline {
   --color-background: var(--background);
@@ -124,13 +128,6 @@
   }
 }
 
-@font-face {
-  font-family: "Geist Serif";
-  src: url("../../docs/design-system/agent-kit/assets/fonts/GeistSerif-Regular.woff2")
-    format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
 :root {
   --font-timeless: "Timeless Grotesk", sans-serif;
 }

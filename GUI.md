@@ -1,21 +1,30 @@
-# GUI — DoRoboty.ai Poster People
+# GUI — DoRoboty.ai Nocny błękit
 
-The required visual direction for new and changed screens is the accepted **Poster People** design system. The project instructions are [docs/design-system/README.md](docs/design-system/README.md). Read them before UI work; they define how the standalone reference is adapted to this React/TypeScript/Vite application. The previous theme reference tree and skill requirements have been removed.
+Since 2026-11-06 the default visual direction for the whole application is **Nocny błękit** (night blue): minimalism in a night navy / cobalt / steel palette. It replaces Poster People as the required style for new and changed screens.
 
-## Read and preview
+## Source of truth
 
-1. [Project integration guide](docs/design-system/README.md): authority, React/Base UI mapping, routes/state, assets and completion criteria.
-2. [Host implementation rules](docs/design-system/IMPLEMENTATION.md), [React component catalog](docs/design-system/HOST-COMPONENTS.md), [record/CV APIs](docs/design-system/RECORDS.md), [acceptance checklist](docs/design-system/VERIFICATION.md) and [status/open findings](docs/design-system/STATUS.md): reusable owners, actual contracts, URL/focus rules, breakpoint values and regression scenarios.
-3. [Agent entry point](docs/design-system/agent-kit/design.md): visual hierarchy, composition, exact standalone imports and extension boundaries.
-4. [Component API](docs/design-system/agent-kit/components/API.md) plus relevant [human reference](docs/design-system/agent-kit/reference/components.md): anatomy, variants, states and evidence.
-5. `npm run design-system:dev`: local catalog, full listing and offer on port 8952. `npm run design-system:check` checks the immutable kit. No global skill or extra installation is required.
+- Rules: [.claude/skills/nocny-blekit/SKILL.md](.claude/skills/nocny-blekit/SKILL.md) — colors as roles, typography, layout, buttons, key components, checklist.
+- Screen recipes: [.claude/skills/nocny-blekit/references/screens.md](.claude/skills/nocny-blekit/references/screens.md) — hero, listing, offer, employer panel, candidate evidence card (P6), waiting reminder (P11), mobile.
+- Tokens: [.claude/skills/nocny-blekit/references/tokens.css](.claude/skills/nocny-blekit/references/tokens.css) (design reference) and the host layer actually used by the app: [tokens.css](tokens.css), [src/app/nocny-blekit.css](src/app/nocny-blekit.css) (night header/hero) and the `--pp-*` values in [src/app/marketplace-components.css](src/app/marketplace-components.css).
+- Provenance: [.claude/skills/nocny-blekit/references/sources.md](.claude/skills/nocny-blekit/references/sources.md).
+
+In Claude Code, run `/nocny-blekit` (or simply ask for a screen "w nocnym błękicie") to load the rules.
+
+## Core rules (summary)
+
+- Palette: night `#00043c` (header, hero, footer, H1–H2 accents), cobalt `#1f3fbf` — the **only** action/link/selection/focus color, steel `#4c5c7c` for secondary text, frost `#b4c0d0` for decorative lines only. Text ink `#0b1230`, page `#f4f6fa`, surfaces white. No pink, violet or orange accents.
+- Working screens (listing, offer, workspace) stay light; night surfaces are limited to the site header and hero.
+- Fonts: IBM Plex Sans 400/600 everywhere, IBM Plex Serif Light 300 only for the listing hero headline. Fonts are bundled locally via `@fontsource/ibm-plex-sans` and `@fontsource/ibm-plex-serif` (SIL OFL); never load remote fonts.
+- Buttons: primary = cobalt fill + white label; outline = cobalt contour + cobalt label; on night = white contour pill. Reject decisions are outline, not red.
+- Contours are 1px frost lines, no offset shadows; radii 6px (controls) / 8px (cards).
 
 ## Implement in this app
 
-- Preserve the requested scope, React/TypeScript/Vite, hash routes, Base UI's `render` composition, Zod/local data operations and current application workflows.
-- Use local Geist Serif Regular for headings, paper/white/ink/pink roles, source contours and radii, complete title wrapping and responsive listing/offer composition.
-- Adapt host tokens and existing primitives together. Do not paste the kit's global reset or vanilla controllers into React, substitute example data for product state, or create a parallel button/card library.
-- Keep docs/design-system/agent-kit unchanged as the reference; implement product UI in src/ and the host theme layer. Existing token names do not establish an alternative visual target.
-- Compare desktop/mobile evidence; test long content, missing salary/marks, keyboard focus, selection, dialogs and recovery. Run ./scripts/verify and report actual checks. The original kit report does not verify a new React screen.
+- Preserve the requested scope, React/TypeScript/Vite, hash routes, Base UI's `render` composition, Zod/local data operations and current workflows.
+- Change visual roles through the host token layer and existing primitives. Do not create a parallel button/card library.
+- Compare desktop and mobile, test long content, missing salary, keyboard focus, selection, dialogs and recovery. Run ./scripts/verify and report actual checks.
 
-The running application has a host adaptation; current code still requires comparison with the source on each UI task. Follow the implementation map rather than creating parallel controls. Keep Search outside mobile filters, preserve copied section URLs under HashRouter, manage focus after chip removal, reuse outlined surfaces and compare full action type roles plus one contour. Record actual evidence and partial findings; preserve old audit artifacts in separate task-specific directories.
+## Historical reference
+
+The Poster People v1.0.0 kit in [docs/design-system/agent-kit](docs/design-system/agent-kit/design.md) stays unchanged as an immutable historical reference (`npm run design-system:check` still verifies it). Its anatomy (listing/offer composition, component families, responsive geometry) still underlies the host markup, but its colors, Geist Serif and pink actions are no longer the target.

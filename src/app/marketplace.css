@@ -7,12 +7,15 @@
   width: min(1280px, calc(100% - 80px));
   margin-inline: auto;
 }
-.pp-intro-copy h1,
+.pp-intro-copy h1 {
+  font-family: var(--pp-font-display);
+  font-weight: 300;
+}
 .pp-job-title,
 .pp-offer-hero h1,
 .pp-results-title h2 {
   font-family: var(--pp-font-heading);
-  font-weight: 400;
+  font-weight: 600;
 }
 .pp-search-field {
   width: auto;
@@ -22,9 +25,10 @@
   left: auto;
 }
 .pp-search-submit {
-  border: 1px solid var(--pp-ink);
-  border-radius: 18px;
+  border: 1px solid var(--pp-action);
+  border-radius: var(--pp-radius-small);
   background: var(--pp-action);
+  color: var(--pp-action-text);
   font-size: 14px;
   font-weight: 600;
   line-height: 1.5;
@@ -41,15 +45,15 @@
 .pp-view-link {
   font-size: 12px;
   padding: 8px;
-  border-radius: 10px;
+  border-radius: var(--gui-radius-xs);
 }
 .pp-view-link[aria-current="page"] {
   background: var(--pp-ink);
   color: white;
 }
 .pp-filter-button {
-  border: 1px solid var(--pp-ink);
-  border-radius: 18px;
+  border: 1px solid var(--pp-line);
+  border-radius: var(--gui-radius-s);
   background: white;
 }
 .pp-filter-dialog[data-slot="dialog-content"] {
@@ -92,8 +96,8 @@
   margin: 25px 0 0 22px;
   width: 43px;
   height: 43px;
-  border: 1px solid var(--pp-ink);
-  border-radius: 18px;
+  border: 1px solid var(--pp-line);
+  border-radius: var(--gui-radius-s);
   background: var(--pp-paper);
   font-size: 17px;
 }
@@ -107,8 +111,8 @@
 .pp-offer-identity > [data-company-logo] {
   width: 60px;
   height: 60px;
-  border: 1px solid var(--pp-ink);
-  border-radius: 18px;
+  border: 1px solid var(--pp-line);
+  border-radius: var(--gui-radius-s);
   background: var(--pp-fact);
 }
 .pp-offer-identity .pp-icon {
@@ -160,7 +164,7 @@
 .pp-offer-employer [data-company-logo] {
   width: 55px;
   height: 55px;
-  border: 1px solid var(--pp-ink);
+  border: 1px solid var(--pp-line);
   border-radius: 16px;
 }
 .pp-employer-copy a {

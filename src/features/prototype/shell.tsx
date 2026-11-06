@@ -204,10 +204,10 @@ export function Shell() {
         </div>
       ) : (
         <>
-          <header className="bg-background/95 shadow-[var(--gui-divider-bottom-shadow)] backdrop-blur supports-[backdrop-filter]:bg-background/80">
+          <header className="site-header">
             <div className="mx-auto flex h-16 max-w-[1360px] items-center justify-between gap-4 px-5 lg:px-8">
               <Link
-                className="flex items-center gap-2.5 text-base font-semibold tracking-[var(--gui-tracking-s)]"
+                className="site-brand flex items-center gap-2.5 text-base font-semibold tracking-[var(--gui-tracking-s)]"
                 to="/"
                 aria-label="DoRoboty.ai — strona główna"
               >
@@ -244,6 +244,7 @@ export function Shell() {
                     )}
                     <Link
                       to="/app"
+                      data-night-outline
                       className={cn(
                         buttonVariants({ variant: "outline", size: "lg" }),
                         "text-sm font-medium max-sm:min-h-10 max-sm:px-[var(--gui-space-xs)] max-sm:text-sm",
@@ -267,6 +268,7 @@ export function Shell() {
                   <>
                     <Link
                       to="/auth/sign-in?audience=candidate"
+                      data-night-outline
                       className={cn(
                         buttonVariants({ variant: "outline", size: "lg" }),
                         "text-sm font-medium max-sm:min-h-10 max-sm:px-[var(--gui-space-xs)] max-sm:text-sm",

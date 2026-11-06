@@ -3,13 +3,13 @@
   min-width: 0;
   padding: 24px 28px;
   border: 1px solid var(--gui-text);
-  border-radius: 24px;
+  border-radius: var(--gui-radius-s);
   background: white;
 }
 .record-tabs {
   display: flex;
   gap: 16px;
-  border-bottom: 1px solid #d8d5d1;
+  border-bottom: 1px solid var(--gui-edge);
   margin-bottom: 22px;
 }
 .record-tabs .record-tab {
@@ -57,7 +57,7 @@
 }
 .record-section {
   padding: 24px 0;
-  border-top: 1px solid #d8d5d1;
+  border-top: 1px solid var(--gui-edge);
 }
 .record-section :is(h2, h3) {
   margin-bottom: 8px;
@@ -68,7 +68,7 @@
 }
 .record-footer {
   padding-top: 20px;
-  border-top: 1px solid #d8d5d1;
+  border-top: 1px solid var(--gui-edge);
 }
 .record-caption {
   color: var(--gui-text-muted);
@@ -146,7 +146,7 @@
   bottom: -7px;
   left: 4px;
   width: 1px;
-  background: #d8d5d1;
+  background: var(--gui-edge);
   content: "";
 }
 .process-timeline li:last-child::after {
@@ -206,8 +206,8 @@
 }
 .record-stage {
   padding: 3px 12px;
-  border-radius: 18px;
-  background: #ffe0f7;
+  border-radius: var(--gui-radius-s);
+  background: var(--gui-color-1-transparent);
 }
 .record-stage:focus {
   outline: 2px solid var(--gui-focus);
@@ -334,6 +334,6 @@
   height: clamp(420px, 72vh, 800px);
   margin-top: 22px;
   border: 1px solid var(--gui-edge);
-  border-radius: 10px;
+  border-radius: var(--gui-radius-xs);
   background: var(--gui-canvas);
 }

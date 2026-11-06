@@ -1,6 +1,6 @@
 # DoRoboty.ai — AIPH3 prototype
 
-A frontend-only job marketplace for participants to extend and test. Built with React, TypeScript and Vite, using Base UI components. The required visual direction for new and changed screens is the accepted Poster People design system.
+A frontend-only job marketplace for participants to extend and test. Built with React, TypeScript and Vite, using Base UI components. The default visual direction is **Nocny błękit** (night blue): rules in [.claude/skills/nocny-blekit](.claude/skills/nocny-blekit/SKILL.md), see [GUI.md](GUI.md). The earlier Poster People kit stays in docs/design-system as an immutable historical reference.
 
 ## Design system — start here for UI work
 

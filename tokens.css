@@ -1,18 +1,18 @@
-/* Poster People host adaptation. Reference kit remains immutable. */
+/* Nocny błękit host theme (default since 2026-11-06). Rules: .claude/skills/nocny-blekit. The Poster People kit remains as an immutable historical reference. */
 :root {
   color-scheme: light;
 
-  --theme-name: "Poster People";
+  --theme-name: "Nocny błękit";
   --theme-icon-family: "Lucide";
   --theme-icon-style: "outlined";
   --icon-light-display: none;
   --icon-regular-display: inline;
   --icon-bold-display: none;
 
-  --gui-font-brand: "Geist Serif", Georgia, serif;
-  --gui-font-ui: Arial, Helvetica, system-ui, sans-serif;
-  --gui-font-editorial: "Geist Serif", Georgia, serif;
-  --gui-font-data: Arial, Helvetica, system-ui, sans-serif;
+  --gui-font-brand: "IBM Plex Sans", Arial, Helvetica, system-ui, sans-serif;
+  --gui-font-ui: "IBM Plex Sans", Arial, Helvetica, system-ui, sans-serif;
+  --gui-font-editorial: "IBM Plex Serif", Georgia, serif;
+  --gui-font-data: "IBM Plex Sans", Arial, Helvetica, system-ui, sans-serif;
   --font-ui: var(--gui-font-ui);
   --font-brand: var(--gui-font-brand);
   --font-editorial: var(--gui-font-editorial);
@@ -21,8 +21,8 @@
   --weight-ui-medium: 500;
   --weight-ui-heavy: 600;
   --weight-brand-regular: 400;
-  --weight-brand-medium: 400;
-  --weight-brand-heavy: 400;
+  --weight-brand-medium: 600;
+  --weight-brand-heavy: 600;
   --weight-editorial-regular: 400;
   --weight-editorial-medium: 500;
   --weight-editorial-heavy: 600;
@@ -70,11 +70,11 @@
   --gui-tracking-xl: 0.02em;
 
   --gui-radius-zero: 0;
-  --gui-radius-xs: 5px;
-  --gui-radius-s: 18px;
-  --gui-radius-m: 24px;
-  --gui-radius-l: 24px;
-  --gui-radius-xl: 24px;
+  --gui-radius-xs: 6px;
+  --gui-radius-s: 8px;
+  --gui-radius-m: 8px;
+  --gui-radius-l: 8px;
+  --gui-radius-xl: 8px;
   --gui-radius-full: 9999px;
   --radius: var(--gui-radius-s);
 
@@ -82,56 +82,56 @@
   --gui-neutral-1-transparent: #ffffff33;
   --gui-neutral-2: #ffffff;
   --gui-neutral-2-transparent: #fbfbfb33;
-  --gui-neutral-3: #f4f4f0;
+  --gui-neutral-3: #f4f6fa;
   --gui-neutral-3-transparent: #f4f4f433;
-  --gui-neutral-4: #d8d5d1;
+  --gui-neutral-4: #b4c0d0;
   --gui-neutral-4-transparent: #e7e7e733;
-  --gui-neutral-5: #cdcdcd;
+  --gui-neutral-5: #b4c0d0;
   --gui-neutral-5-transparent: #cdcdcd33;
-  --gui-neutral-6: #a1a1a1;
+  --gui-neutral-6: #8a97b0;
   --gui-neutral-6-transparent: #a1a1a133;
-  --gui-neutral-7: #7d7d7d;
+  --gui-neutral-7: #6b7a99;
   --gui-neutral-7-transparent: #7d7d7d33;
-  --gui-neutral-8: #5e5a5c;
+  --gui-neutral-8: #4c5c7c;
   --gui-neutral-8-transparent: #55555533;
-  --gui-neutral-9: #333333;
+  --gui-neutral-9: #2c3444;
   --gui-neutral-9-transparent: #33333333;
-  --gui-neutral-10: #181818;
-  --gui-color-1: #ff90e8;
-  --gui-color-2: #181818;
-  --gui-color-2-transparent: #085e5533;
-  --gui-color-3: #ffe45b;
-  --gui-color-3-transparent: #ffed9b33;
-  --gui-color-4: #ffb5aa;
-  --gui-color-4-transparent: #ffb5aa33;
-  /* Noninteractive Match Score facts: red → orange → yellow → vivid green. */
-  --gui-match-red: #ff6b79;
-  --gui-match-orange: #ffb15c;
-  --gui-match-yellow: #ffe45b;
-  --gui-match-green: #00c853;
-  --gui-success: #00906c;
-  --gui-warning: #ffea00;
-  --gui-warning-transparent: #ffea0033;
-  --gui-error: #fc032d;
+  --gui-neutral-10: #0b1230;
+  --gui-color-1: #1f3fbf;
+  --gui-color-2: #1f3fbf;
+  --gui-color-2-transparent: #1f3fbf33;
+  --gui-color-3: #00043c;
+  --gui-color-3-transparent: #00043c1a;
+  --gui-color-4: #4c5c7c;
+  --gui-color-4-transparent: #4c5c7c33;
+  /* Noninteractive Match Score facts: pale steel → cobalt tint ramp (no traffic-light colors). */
+  --gui-match-red: #e3e8f2;
+  --gui-match-orange: #c9d3ea;
+  --gui-match-yellow: #9fb0e3;
+  --gui-match-green: #6f88dc;
+  --gui-success: #146c43;
+  --gui-warning: #8a5a00;
+  --gui-warning-transparent: #fdf3dc;
+  --gui-error: #b42318;
   --gui-neutral-10-transparent: #00000033;
-  --gui-backdrop: #18181899;
-  --gui-color-1-transparent: #ffe0f7;
-  --gui-success-transparent: #00906c33;
-  --gui-error-transparent: #fc032d33;
+  --gui-backdrop: #00043c99;
+  --gui-color-1-transparent: #e8edfb;
+  --gui-success-transparent: #e6f4ec;
+  --gui-error-transparent: #fdecea;
 
-  --gui-canvas: #f4f4f0;
+  --gui-canvas: #f4f6fa;
   --gui-surface: var(--gui-neutral-2);
   --gui-surface-muted: var(--gui-neutral-3);
   --gui-text: var(--gui-neutral-10);
-  --gui-text-muted: #5e5a5c;
+  --gui-text-muted: #4c5c7c;
   --gui-text-muted-accessible: var(--gui-neutral-8);
-  --gui-edge: #181818;
+  --gui-edge: #b4c0d0;
   --gui-accent: var(--gui-color-1);
-  --gui-accent-text: #181818;
-  /* Dark labels on pink actions. */
-  --gui-accent-text-accessible: var(--gui-neutral-10);
+  --gui-accent-text: #ffffff;
+  /* White labels on cobalt actions. */
+  --gui-accent-text-accessible: #ffffff;
   --gui-danger: var(--gui-error);
-  --gui-focus: #181818;
+  --gui-focus: #1f3fbf;
   --gui-link: var(--gui-color-2);
   --gui-control: #ffffff;
   --gui-control-hover: var(--gui-neutral-4);
@@ -140,16 +140,16 @@
 
   --gui-shadow-none: none;
   --gui-shadow-s: 0 2px 4px 0 #00000000;
-  --gui-shadow-m: inset 0 0 0 1px #181818;
+  --gui-shadow-m: inset 0 0 0 1px #b4c0d0;
   --gui-shadow-l: 0 16px 48px 0 #00000000;
-  /* Visible ink contours; no offset shadows. */
-  --gui-edge-shadow: inset 0 0 0 1px #181818;
+  /* Thin frost contours; no offset shadows. */
+  --gui-edge-shadow: inset 0 0 0 1px #b4c0d0;
   --gui-divider-top-shadow: inset 0 1px var(--gui-edge);
   --gui-divider-bottom-shadow: inset 0 -1px var(--gui-edge);
   --gui-divider-inline-end-shadow: inset -1px 0 var(--gui-edge);
   --gui-accent-edge-shadow: none;
-  --gui-accent-bar-shadow: inset 4px 0 var(--gui-color-1);
-  --gui-control-shadow: inset 0 0 0 1px #181818;
+  --gui-accent-bar-shadow: inset 3px 0 var(--gui-color-1);
+  --gui-control-shadow: inset 0 0 0 1px #6b7a99;
   --gui-control-hover-shadow: none;
   --gui-control-focus-shadow: none;
   --gui-control-invalid-shadow: none;
@@ -250,8 +250,8 @@
   --card-foreground: var(--gui-text);
   --popover: var(--gui-neutral-1);
   --popover-foreground: var(--gui-text);
-  --primary: #ff90e8;
-  --primary-foreground: #181818;
+  --primary: #1f3fbf;
+  --primary-foreground: #ffffff;
   --secondary: var(--gui-surface-muted);
   --secondary-foreground: var(--gui-text);
   --muted: var(--gui-surface-muted);

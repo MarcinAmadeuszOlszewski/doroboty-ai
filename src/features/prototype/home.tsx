@@ -7,7 +7,7 @@ import { usePrototype } from "./store";
 import { publishedJobs } from "./model";
 import { cn } from "@/lib/utils";
 
-import peopleArt from "../../../docs/design-system/agent-kit/assets/people.png";
+import heroArt from "../../app/assets/night-structure.svg";
 
 const categories = [
   {
@@ -33,7 +33,7 @@ export default function HomePage() {
 
   return (
     <>
-      <section className="home-intro bg-muted/25 shadow-[var(--gui-divider-bottom-shadow)]">
+      <section className="home-intro">
         <div className="mx-auto grid max-w-[1360px] gap-12 px-5 py-16 lg:grid-cols-[1.3fr_0.7fr] lg:px-8 lg:py-24">
           <div>
             <Badge variant="secondary" className="px-3 py-1 text-xs">
@@ -52,13 +52,14 @@ export default function HomePage() {
               </Link>
               <Link
                 to="/metodologia"
+                data-hero-secondary
                 className={cn(buttonVariants({ size: "lg", variant: "outline" }))}
               >
                 Jak wybieramy role
               </Link>
             </div>
           </div>
-          <img className="people-art" src={peopleArt} alt="Dwie osoby pracujące razem z laptopem" />
+          <img className="people-art" src={heroArt} alt="" />
         </div>
       </section>
 

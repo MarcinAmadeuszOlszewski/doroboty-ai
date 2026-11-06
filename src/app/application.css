@@ -51,7 +51,7 @@
   width: 44px;
   height: 44px;
   border: 1px solid var(--gui-edge);
-  border-radius: 10px;
+  border-radius: var(--gui-radius-xs);
 }
 .application-offer h2 {
   font-size: 28px;

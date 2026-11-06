@@ -1,0 +1,69 @@
+/*
+ * Nocny błękit — tokeny DoRoboty.ai (propozycja, 2026-11-06).
+ * Paleta bazowa pobrana z obrazka referencyjnego (wartości szacowane z pikseli),
+ * kontrasty policzone wg WCAG. Wklej do <style> makiety albo zmapuj na warstwę hosta.
+ */
+:root {
+  /* Paleta bazowa (wybrana przez użytkownika) */
+  --nb-night: #00043c;        /* nocny granat: hero, nagłówek marki, stopka, H1–H2 na jasnym */
+  --nb-cobalt: #1f3fbf;       /* jedyny kolor akcji; 8.3:1 na białym */
+  --nb-steel: #4c5c7c;        /* tekst pomocniczy; 6.7:1 na białym */
+  --nb-frost: #b4c0d0;        /* linie dekoracyjne; 1.8:1 — nie do tekstu ani pól */
+
+  /* Pochodne (propozycja) */
+  --nb-ink: #0b1230;          /* tekst główny */
+  --nb-paper: #f4f6fa;        /* tło strony, nagłówki tabel, karta faktów */
+  --nb-surface: #ffffff;      /* karty, panele, tabele */
+  --nb-line-strong: #6b7a99;  /* ramki pól formularzy i kontrolek; 4.3:1 */
+  --nb-cobalt-hover: #18329a;
+  --nb-cobalt-tint: #e8edfb;  /* tło bloku dowodu, hover przycisku konturowego */
+  --nb-night-raised: #0a1460; /* karty na nocnym tle */
+  --nb-on-night-muted: #b4c0d0; /* tekst pomocniczy na granacie; 10.5:1 */
+  --nb-focus: #1f3fbf;
+  --nb-focus-on-night: #7f95ff; /* 7.1:1 na granacie */
+
+  /* Stany — tylko komunikaty, nigdy ozdoba */
+  --nb-error: #b42318;
+  --nb-error-tint: #fdecea;
+  --nb-success: #146c43;
+  --nb-success-tint: #e6f4ec;
+  --nb-warning: #8a5a00;
+  --nb-warning-tint: #fdf3dc;
+
+  /* Typografia (fonty ładowane lokalnie, licencja OFL) */
+  --nb-font-display: "IBM Plex Serif", Georgia, serif;   /* tylko 300 Light */
+  --nb-font-ui: "IBM Plex Sans", Arial, Helvetica, system-ui, sans-serif;
+  --nb-text-xs: 13px;   /* etykiety, nagłówki kolumn, źródło cytatu */
+  --nb-text-s: 14px;    /* metadane oferty, przyciski */
+  --nb-text-m: 16px;    /* tekst */
+  --nb-text-l: 20px;    /* tytuł karty, lead */
+  --nb-text-xl: 28px;   /* H2 / tytuł ekranu roboczego */
+  --nb-text-2xl: 40px;  /* H1 ekranu roboczego */
+  --nb-text-hero: 64px; /* hero (Plex Serif Light); 40px na telefonie */
+  --nb-leading-tight: 1.05;
+  --nb-leading-body: 1.55;
+
+  /* Odstępy */
+  --nb-space-1: 4px;
+  --nb-space-2: 8px;
+  --nb-space-3: 12px;
+  --nb-space-4: 16px;
+  --nb-space-5: 24px;
+  --nb-space-6: 32px;
+  --nb-space-7: 48px;
+  --nb-space-8: 64px;
+  --nb-content-max: 1200px;
+
+  /* Kształt */
+  --nb-radius-control: 6px;  /* przyciski, pola */
+  --nb-radius-card: 8px;     /* karty, panele */
+  --nb-radius-pill: 9999px;  /* przyciski‑kontury na nocy, chipy */
+  --nb-border: 1px solid var(--nb-frost);
+  --nb-control-height: 44px;
+  --nb-row-height: 48px;     /* wiersz tabeli zgłoszeń */
+  --nb-bar: 3px;           /* pasek dowodu, wybranego wiersza, baneru P11 */
+  --nb-dot: 8px;           /* kropka statusu */
+  --nb-split-min: 1180px;  /* od tej szerokości karta dowodów obok tabeli, poniżej pod nią */
+  --nb-mobile-max: 768px;  /* do tej szerokości tabela zamienia się w karty */
+  --nb-shadow-pop: 0 8px 24px rgb(0 4 60 / 0.16); /* tylko menu i dialogi */
+}
