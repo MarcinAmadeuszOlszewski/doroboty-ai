@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { initialState, stateSchema, type Application, type Stage } from "./model";
 import {
+  LOAD_STORAGE_KEY,
   REMINDER_STORAGE_KEY,
+  readLoadInfo,
+  writeLoadInfo,
   daysLabel,
   P11_QUEUES,
   buildP11Session,
@@ -102,6 +105,44 @@ describe("reminder variant storage", () => {
     expect(readReminder(storage)).toBe(true);
     expect(writeReminder(broken, false)).toBe(false);
     expect(writeReminder(null, false)).toBe(false);
+  });
+});
+
+describe("P11 load status storage", () => {
+  function memory() {
+    const data = new Map<string, string>();
+    return {
+      getItem: (key: string) => data.get(key) ?? null,
+      setItem: (key: string, value: string) => void data.set(key, value),
+    };
+  }
+  it("round-trips the loaded queue and time, and clears it", () => {
+    const storage = memory();
+    const info = { queue: "B" as const, at: "2026-11-09T13:05:00.000Z" };
+    writeLoadInfo(storage, info);
+    expect(readLoadInfo(storage)).toEqual(info);
+    writeLoadInfo(storage, null);
+    expect(storage.getItem(LOAD_STORAGE_KEY)).toBe("");
+    expect(readLoadInfo(storage)).toBeNull();
+  });
+  it("returns null for missing, invalid or unreadable values without throwing", () => {
+    const storage = memory();
+    expect(readLoadInfo(null)).toBeNull();
+    expect(readLoadInfo(storage)).toBeNull();
+    storage.setItem(LOAD_STORAGE_KEY, "{not json");
+    expect(readLoadInfo(storage)).toBeNull();
+    storage.setItem(LOAD_STORAGE_KEY, JSON.stringify({ queue: "C", at: "2026-11-09T13:05:00Z" }));
+    expect(readLoadInfo(storage)).toBeNull();
+    const broken = {
+      getItem: () => {
+        throw new Error("blocked");
+      },
+      setItem: () => {
+        throw new Error("blocked");
+      },
+    };
+    expect(readLoadInfo(broken)).toBeNull();
+    expect(() => writeLoadInfo(broken, { queue: "A", at: "2026-11-09T13:05:00Z" })).not.toThrow();
   });
 });
 

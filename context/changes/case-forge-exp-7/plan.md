@@ -481,6 +481,10 @@ Negligible: at most about 20 applications, so the waiting functions are computed
 
 There is no migration. `State` stays version 1. Existing saves keep working, and the session appears only after the facilitator loads it. The reminder key is a separate optional localStorage entry. "Resetuj scenariusz" returns to the baseline but keeps the reminder setting.
 
+**Addendum (2026-11-09, impl-review F2).** Commit `fdad1c4` changed baseline behaviour, which this plan excluded: reset and P11 loading keep the selected persona when it exists in the new data (`keepActivePerson`, `store.tsx`). Clearing it removed the workspace sidebar on `/app/settings`. As a result, baseline reset no longer returns to the persona picker. The existing reset e2e assertion now expects `"candidate-anna"` instead of `null`. Documented in FEATURES SYS-10 and in the task note.
+
+**Addendum (2026-11-09, impl-review F3).** Besides the reminder key, the store persists the loaded queue and load time under a second localStorage key, `doroboty.p11.load` (`readLoadInfo`/`writeLoadInfo` in `p11.ts`). That way the status "Załadowano sesję P11 · kolejka X · …" survives a reload. Like the reminder key it stays outside `State` and the export. Reset and import clear it. Unit tests are in `p11.test.ts`.
+
 ## References
 
 - Frame: `context/changes/case-forge-exp-7/frame.md`
@@ -537,7 +541,7 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 - [x] 6.1 Full gate passes: `./scripts/verify` — 87c4061
 - [x] 6.2 Poster People kit untouched: `npm run design-system:check` — 87c4061
-- [x] 6.3 Missing Playwright Chromium reported, not installed — 731d880
+- [x] 6.3 Missing Playwright Chromium reported, not installed — 731d880; later installed browser-only via `npx playwright install chromium`, no OS deps — see task note
 
 ### Phase 7: Manual verification (after all phases)
 

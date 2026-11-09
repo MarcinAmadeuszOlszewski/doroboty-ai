@@ -68,6 +68,7 @@ export function SettingsPage() {
       setMessage("Przywrócono scenariusz początkowy.");
     } else if (pending?.startsWith("p11-")) {
       loadP11Session(pending.slice(4) as P11Queue);
+      setMessage("");
     } else if (pending === "import" && importState(raw)) {
       setMessage("Dane zostały zaimportowane.");
     }

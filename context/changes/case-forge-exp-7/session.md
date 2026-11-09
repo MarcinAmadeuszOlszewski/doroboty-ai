@@ -11,12 +11,14 @@ Sprawdzamy, czy pracodawca **zauważa i rozumie** zgłoszenia czekające ponad 3
 
 ## Przygotowanie rundy
 
-1. **Załaduj kolejkę rundy (A lub B) tuż przed rundą**: Ustawienia → „Sesja testowa P11” → „Załaduj kolejkę A/B” → potwierdź. Wiek zgłoszeń liczy się od chwili załadowania; załadowanie ok. 46 godzin wcześniej zmieniłoby zgłoszenie sprzed 2 dni w czekające ponad 3 dni.
-2. Załadowanie **zastępuje dane poprzedniej rundy**. Najpierw **wyeksportuj JSON** (Ustawienia → „Eksportuj dane”).
+1. Załadowanie **zastępuje dane poprzedniej rundy**, więc najpierw **wyeksportuj JSON** poprzedniej rundy (Ustawienia → „Eksportuj dane”).
+2. **Załaduj kolejkę rundy (A lub B) tuż przed rundą**: Ustawienia → „Sesja testowa P11” → „Załaduj kolejkę A/B” → potwierdź. Wiek zgłoszeń liczy się od chwili załadowania; załadowanie ok. 46 godzin wcześniej zmieniłoby zgłoszenie sprzed 2 dni w czekające ponad 3 dni.
 3. Zapisz czas z komunikatu „Załadowano sesję P11 · kolejka X · HH:MM (UTC …Z)”.
 4. Ustaw wariant rundy (pole „Przypomnienie o czekających zgłoszeniach w tej rundzie”) **przed przekazaniem komputera**; uczestnik nie widzi przełącznika w trakcie. Wariant nie trafia do eksportu — zapisz go w arkuszu obserwacji.
-5. Zbalansuj kolejność między uczestnikami: A/B oraz ON/OFF (np. uczestnik 1: A z przypomnieniem, potem B bez; uczestnik 2: B z przypomnieniem, potem A bez; kolejni uczestnicy zamieniają kolejność rund).
-6. Uczestnik zawsze wchodzi jako Karolina Wiśniewska (BrightLabs).
+5. Kliknij „Zmień osobę” i przekaż komputer na ekranie wyboru osoby. **Nigdy nie przekazuj komputera na ekranie Ustawień** — po załadowaniu kolejki aplikacja zostaje na Ustawieniach z zalogowaną osobą, a panel „Sesja testowa P11” zdradza, czego dotyczy test.
+6. Zbalansuj kolejność między uczestnikami: A/B oraz ON/OFF (np. uczestnik 1: A z przypomnieniem, potem B bez; uczestnik 2: B z przypomnieniem, potem A bez; kolejni uczestnicy zamieniają kolejność rund).
+7. Uczestnik sam wybiera na ekranie wyboru osoby Karolinę Wiśniewską (BrightLabs).
+8. Jeśli uczestnik w trakcie rundy otworzy „Ustawienia”, zapisz to w kolumnie „Uwagi”: dane tej rundy o zauważeniu przypomnienia są wtedy nieważne.
 
 ## Polecenie dla uczestnika
 
