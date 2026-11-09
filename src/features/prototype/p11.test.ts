@@ -1,9 +1,12 @@
 import { describe, expect, it } from "vitest";
-import { initialState, type Application, type Stage } from "./model";
+import { initialState, stateSchema, type Application, type Stage } from "./model";
 import {
   REMINDER_STORAGE_KEY,
   daysLabel,
+  P11_QUEUES,
+  buildP11Session,
   isOverdue,
+  isP11Session,
   isWaiting,
   readReminder,
   waitingCountLabel,
@@ -99,5 +102,57 @@ describe("reminder variant storage", () => {
     expect(readReminder(storage)).toBe(true);
     expect(writeReminder(broken, false)).toBe(false);
     expect(writeReminder(null, false)).toBe(false);
+  });
+});
+
+describe("P11 session seed", () => {
+  const BRIGHTLABS = "10000000-0000-4000-8000-000000000001";
+  for (const now of [NOW, new Date("2026-12-31T08:30:00.000Z")]) {
+    describe(`at ${now.toISOString()}`, () => {
+      const sessions = Object.fromEntries(
+        P11_QUEUES.map((queue) => [queue, buildP11Session(now, queue)]),
+      );
+      for (const queue of P11_QUEUES) {
+        it(`queue ${queue} is valid, historical and has 4 overdue BrightLabs applications`, () => {
+          const state = sessions[queue];
+          expect(() => stateSchema.parse(state)).not.toThrow();
+          expect(isP11Session(state)).toBe(true);
+          expect(state.activePersonId).toBeNull();
+          expect(state.applications).toHaveLength(8);
+          expect(state.applications.some((x) => x.id === "application-example")).toBe(false);
+          for (const application of state.applications) {
+            const job = state.jobs.find((x) => x.id === application.jobId)!;
+            expect(application.companyId).toBe(BRIGHTLABS);
+            expect(application.events[0].at > job.publishedAt).toBe(true);
+            for (const event of application.events)
+              expect(Date.parse(event.at)).toBeLessThan(now.getTime());
+          }
+          const overdue = state.applications.filter((x) => isOverdue(x, now));
+          expect(overdue).toHaveLength(4);
+          expect(overdue.every((x) => x.companyId === BRIGHTLABS)).toBe(true);
+          expect(new Set(overdue.map((x) => x.jobId)).size).toBe(2);
+          expect(isOverdue(state.applications[0], now)).toBe(false);
+        });
+      }
+      it("queues A and B are equivalent position by position", () => {
+        const profile = (queue: "A" | "B") =>
+          sessions[queue].applications.map((x) => ({
+            days: waitingDays(x, now),
+            stage: x.stage,
+            score: x.score,
+            job: x.jobId,
+            overdue: isOverdue(x, now),
+          }));
+        expect(profile("A")).toEqual(profile("B"));
+        const names = (queue: "A" | "B") =>
+          sessions[queue].applications.map((x) => x.candidateName);
+        expect(names("A").filter((name) => names("B").includes(name))).toEqual([]);
+      });
+    });
+  }
+  it("leaves the default scenario untouched", () => {
+    const state = initialState();
+    expect(state.applications).toHaveLength(1);
+    expect(isP11Session(state)).toBe(false);
   });
 });

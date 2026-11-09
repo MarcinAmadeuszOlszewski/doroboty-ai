@@ -481,18 +481,18 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 #### Automated
 
-- [x] 1.1 Unit tests pass: `npx vitest run src/features/prototype/p11.test.ts`
-- [x] 1.2 Types pass: `npm run typecheck`
-- [x] 1.3 Lint passes: `npm run lint`
+- [x] 1.1 Unit tests pass: `npx vitest run src/features/prototype/p11.test.ts` — d9e8af9
+- [x] 1.2 Types pass: `npm run typecheck` — d9e8af9
+- [x] 1.3 Lint passes: `npm run lint` — d9e8af9
 
 ### Phase 2: Session seed
 
 #### Automated
 
-- [ ] 2.1 Seed and logic tests pass: `npx vitest run src/features/prototype/p11.test.ts`
-- [ ] 2.2 Existing unit suite still passes: `npm test`
-- [ ] 2.3 Types pass: `npm run typecheck`
-- [ ] 2.4 Participant packet check passes: `npm run verify:packet`
+- [x] 2.1 Seed and logic tests pass: `npx vitest run src/features/prototype/p11.test.ts`
+- [x] 2.2 Existing unit suite still passes: `npm test`
+- [x] 2.3 Types pass: `npm run typecheck`
+- [x] 2.4 Participant packet check passes: `npm run verify:packet`
 
 ### Phase 3: Facilitator setup
 

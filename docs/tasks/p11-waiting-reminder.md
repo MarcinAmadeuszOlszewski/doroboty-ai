@@ -23,6 +23,10 @@ Email or notification delivery, scheduler, experiment assignment or exposure log
 
 - The load status (queue and load time) is held in the store (and persisted under its own key) instead of Settings-local state: loading a session sets `activePersonId` to `null`, which remounts the page content (`shell.tsx` keys it on the active person), so a local message would vanish.
 
+## Environment notes
+
+- `npm run verify:packet` fails in this Windows checkout both before and after the P11 changes: `core.autocrlf=true` turns `public/case/baseline.csv` into CRLF while the script compares against LF output. Run against the committed (LF) blobs (`git show HEAD:...` into a temp root) it passes: "Baseline packet verified: 120 journeys". The P11 changes do not touch the packet.
+
 ## Evidence
 
 Filled in at the end of Phase 6.

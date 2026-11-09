@@ -1,0 +1,376 @@
+{
+  "personas": [
+    {
+      "id": "p11-cand-a1",
+      "role": "candidate",
+      "name": "Ewa Lis",
+      "headline": "Product Manager · asystenci AI w obsłudze",
+      "bio": "Łączę badania z użytkownikami, metryki i pracę z zespołem technicznym.",
+      "location": "Warszawa",
+      "cv": "Ewa Lis — Product Manager\n2022–2026: Product Manager w zespole wsparcia klienta. Pilotaż asystenta AI, wywiady z 14 użytkownikami, skrócenie czasu odpowiedzi o 22%.\n2019–2022: Analityk produktu. Eksperymenty A/B i raportowanie lejków.",
+      "exampleScore": 78,
+      "exampleSummary": "Doświadczenie w pilotażach AI i badaniach z użytkownikami. Warto zapytać o sposób mierzenia efektów po wdrożeniu."
+    },
+    {
+      "id": "p11-cand-a2",
+      "role": "candidate",
+      "name": "Piotr Maj",
+      "headline": "Specjalista ds. operacji · automatyzacja procesów",
+      "bio": "Porządkuję procesy operacyjne i wdrażam narzędzia wspierające zespoły.",
+      "location": "Kraków",
+      "cv": "Piotr Maj — Specjalista ds. operacji\n2020–2026: Specjalista ds. operacji w firmie usługowej. Mapowanie procesów, automatyzacja raportowania, skrócenie obiegu dokumentów o 35%.",
+      "exampleScore": 66,
+      "exampleSummary": "Praktyka w automatyzacji procesów i szkoleniu zespołów. Warto dopytać o skalę wdrożeń i pracę z narzędziami AI."
+    },
+    {
+      "id": "p11-cand-a3",
+      "role": "candidate",
+      "name": "Julia Wrona",
+      "headline": "Koordynatorka operacji · e-commerce",
+      "bio": "Koordynuję pracę zespołów i dbam o terminowość realizacji.",
+      "location": "Wrocław",
+      "cv": "Julia Wrona — Koordynatorka operacji\n2021–2026: Koordynatorka operacji w sklepie internetowym. Planowanie pracy zespołu, kontakt z dostawcami, wdrożenie arkuszy do śledzenia zamówień.",
+      "exampleScore": 58,
+      "exampleSummary": "Solidne doświadczenie koordynacyjne, bez praktyki z narzędziami AI. Zgłoszenie zamknięte w przykładowym scenariuszu."
+    },
+    {
+      "id": "p11-cand-a4",
+      "role": "candidate",
+      "name": "Tomasz Kruk",
+      "headline": "Product Owner · platformy B2B",
+      "bio": "Rozwijam produkty B2B i prowadzę warsztaty z klientami.",
+      "location": "Gdańsk",
+      "cv": "Tomasz Kruk — Product Owner\n2020–2026: Product Owner platformy B2B. Backlog, warsztaty z klientami, wdrożenie asystenta do zgłoszeń, skrócenie czasu obsługi o 28%.\n2017–2020: Konsultant wdrożeniowy.",
+      "exampleScore": 81,
+      "exampleSummary": "Mocne doświadczenie w produktach B2B i automatyzacji obsługi. Warto zapytać o decyzje podejmowane samodzielnie."
+    },
+    {
+      "id": "p11-cand-a5",
+      "role": "candidate",
+      "name": "Natalia Sowa",
+      "headline": "Specjalistka ds. procesów · usługi finansowe",
+      "bio": "Pracuję z danymi i dokumentacją procesów w dużej organizacji.",
+      "location": "Poznań",
+      "cv": "Natalia Sowa — Specjalistka ds. procesów\n2019–2026: Specjalistka ds. procesów w instytucji finansowej. Dokumentacja procesów, analiza przyczyn opóźnień, pilotaż automatycznej klasyfikacji pism.",
+      "exampleScore": 71,
+      "exampleSummary": "Praktyka w pilotażach klasyfikacji dokumentów i analizie błędów. Warto dopytać o współpracę z zespołem technicznym."
+    },
+    {
+      "id": "p11-cand-a6",
+      "role": "candidate",
+      "name": "Błażej Orzeł",
+      "headline": "Operations Analyst · SaaS",
+      "bio": "Analizuję dane operacyjne i buduję proste automatyzacje.",
+      "location": "Łódź",
+      "cv": "Błażej Orzeł — Operations Analyst\n2021–2026: Operations Analyst w firmie SaaS. Dashboardy dla zespołów, automatyzacje w narzędziach no-code, wsparcie wdrożenia asystenta AI w helpdesku.",
+      "exampleScore": 74,
+      "exampleSummary": "Dobre podstawy analityczne i praktyka z narzędziami no-code. Warto zapytać o ocenę jakości odpowiedzi AI."
+    },
+    {
+      "id": "p11-cand-a7",
+      "role": "candidate",
+      "name": "Magdalena Jeż",
+      "headline": "Product Manager · aplikacje mobilne",
+      "bio": "Rozwijam aplikacje mobilne i pracuję z danymi o zachowaniach użytkowników.",
+      "location": "Katowice",
+      "cv": "Magdalena Jeż — Product Manager\n2021–2026: Product Manager aplikacji mobilnej. Roadmapa, analityka zachowań, testy A/B, prototyp funkcji opartej o AI.\n2018–2021: Product Analyst.",
+      "exampleScore": 69,
+      "exampleSummary": "Praktyka w prototypowaniu funkcji AI i testach z użytkownikami. Zaproszenie na rozmowę wysłane w przykładowym scenariuszu."
+    },
+    {
+      "id": "p11-cand-a8",
+      "role": "candidate",
+      "name": "Kamil Żuraw",
+      "headline": "Project Manager · IT",
+      "bio": "Prowadzę projekty IT i dbam o komunikację w zespole.",
+      "location": "Lublin",
+      "cv": "Kamil Żuraw — Project Manager\n2018–2026: Project Manager w firmie IT. Prowadzenie projektów dla klientów, planowanie sprintów, raportowanie postępów, krótkie kursy z uczenia maszynowego.",
+      "exampleScore": 62,
+      "exampleSummary": "Doświadczenie w prowadzeniu projektów, mniej w roli produktowej. Warto zapytać o samodzielne decyzje produktowe."
+    },
+    {
+      "id": "p11-cand-b1",
+      "role": "candidate",
+      "name": "Agata Bocian",
+      "headline": "Product Manager · asystenci AI w obsłudze",
+      "bio": "Łączę badania z użytkownikami, metryki i pracę z zespołem technicznym.",
+      "location": "Gdańsk",
+      "cv": "Agata Bocian — Product Manager\n2022–2026: Product Manager w zespole obsługi klienta. Pilotaż automatyzacji zgłoszeń, wywiady z 15 użytkownikami, skrócenie czasu odpowiedzi o 20%.\n2019–2022: Analityk produktu. Eksperymenty A/B i raportowanie lejków.",
+      "exampleScore": 78,
+      "exampleSummary": "Doświadczenie w pilotażach AI i badaniach z użytkownikami. Warto zapytać o sposób mierzenia efektów po wdrożeniu."
+    },
+    {
+      "id": "p11-cand-b2",
+      "role": "candidate",
+      "name": "Michał Sokół",
+      "headline": "Specjalista ds. operacji · automatyzacja procesów",
+      "bio": "Porządkuję procesy operacyjne i wdrażam narzędzia wspierające zespoły.",
+      "location": "Poznań",
+      "cv": "Michał Sokół — Specjalista ds. operacji\n2020–2026: Specjalista ds. operacji w firmie logistycznej. Mapowanie procesów, automatyzacja zestawień, skrócenie obiegu dokumentów o 33%.",
+      "exampleScore": 66,
+      "exampleSummary": "Praktyka w automatyzacji procesów i szkoleniu zespołów. Warto dopytać o skalę wdrożeń i pracę z narzędziami AI."
+    },
+    {
+      "id": "p11-cand-b3",
+      "role": "candidate",
+      "name": "Weronika Kos",
+      "headline": "Koordynatorka operacji · e-commerce",
+      "bio": "Koordynuję pracę zespołów i dbam o terminowość realizacji.",
+      "location": "Łódź",
+      "cv": "Weronika Kos — Koordynatorka operacji\n2021–2026: Koordynatorka operacji w sklepie internetowym. Planowanie pracy zespołu, kontakt z magazynami, wdrożenie arkuszy do śledzenia reklamacji.",
+      "exampleScore": 58,
+      "exampleSummary": "Solidne doświadczenie koordynacyjne, bez praktyki z narzędziami AI. Zgłoszenie zamknięte w przykładowym scenariuszu."
+    },
+    {
+      "id": "p11-cand-b4",
+      "role": "candidate",
+      "name": "Radosław Szpak",
+      "headline": "Product Owner · platformy B2B",
+      "bio": "Rozwijam produkty B2B i prowadzę warsztaty z klientami.",
+      "location": "Katowice",
+      "cv": "Radosław Szpak — Product Owner\n2020–2026: Product Owner platformy B2B. Backlog, warsztaty z klientami, wdrożenie podpowiedzi do zgłoszeń, skrócenie czasu obsługi o 26%.\n2017–2020: Konsultant wdrożeniowy.",
+      "exampleScore": 81,
+      "exampleSummary": "Mocne doświadczenie w produktach B2B i automatyzacji obsługi. Warto zapytać o decyzje podejmowane samodzielnie."
+    },
+    {
+      "id": "p11-cand-b5",
+      "role": "candidate",
+      "name": "Paulina Gil",
+      "headline": "Specjalistka ds. procesów · usługi finansowe",
+      "bio": "Pracuję z danymi i dokumentacją procesów w dużej organizacji.",
+      "location": "Lublin",
+      "cv": "Paulina Gil — Specjalistka ds. procesów\n2019–2026: Specjalistka ds. procesów w firmie ubezpieczeniowej. Dokumentacja procesów, analiza przyczyn opóźnień, pilotaż automatycznej klasyfikacji wniosków.",
+      "exampleScore": 71,
+      "exampleSummary": "Praktyka w pilotażach klasyfikacji dokumentów i analizie błędów. Warto dopytać o współpracę z zespołem technicznym."
+    },
+    {
+      "id": "p11-cand-b6",
+      "role": "candidate",
+      "name": "Jakub Czapla",
+      "headline": "Operations Analyst · SaaS",
+      "bio": "Analizuję dane operacyjne i buduję proste automatyzacje.",
+      "location": "Warszawa",
+      "cv": "Jakub Czapla — Operations Analyst\n2021–2026: Operations Analyst w firmie SaaS. Raporty dla zespołów, automatyzacje w narzędziach no-code, wsparcie wdrożenia asystenta AI w obsłudze klienta.",
+      "exampleScore": 74,
+      "exampleSummary": "Dobre podstawy analityczne i praktyka z narzędziami no-code. Warto zapytać o ocenę jakości odpowiedzi AI."
+    },
+    {
+      "id": "p11-cand-b7",
+      "role": "candidate",
+      "name": "Dorota Kania",
+      "headline": "Product Manager · aplikacje mobilne",
+      "bio": "Rozwijam aplikacje mobilne i pracuję z danymi o zachowaniach użytkowników.",
+      "location": "Kraków",
+      "cv": "Dorota Kania — Product Manager\n2021–2026: Product Manager aplikacji mobilnej. Roadmapa, analityka zachowań, testy A/B, prototyp funkcji opartej o rekomendacje.\n2018–2021: Product Analyst.",
+      "exampleScore": 69,
+      "exampleSummary": "Praktyka w prototypowaniu funkcji AI i testach z użytkownikami. Zaproszenie na rozmowę wysłane w przykładowym scenariuszu."
+    },
+    {
+      "id": "p11-cand-b8",
+      "role": "candidate",
+      "name": "Łukasz Dudek",
+      "headline": "Project Manager · IT",
+      "bio": "Prowadzę projekty IT i dbam o komunikację w zespole.",
+      "location": "Wrocław",
+      "cv": "Łukasz Dudek — Project Manager\n2018–2026: Project Manager w firmie IT. Prowadzenie projektów dla klientów, planowanie sprintów, raportowanie postępów, kurs online z analizy danych.",
+      "exampleScore": 62,
+      "exampleSummary": "Doświadczenie w prowadzeniu projektów, mniej w roli produktowej. Warto zapytać o samodzielne decyzje produktowe."
+    }
+  ],
+  "applications": [
+    {
+      "queue": "A",
+      "id": "p11-app-a1",
+      "candidateId": "p11-cand-a1",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Prowadziłam wdrożenie asystenta AI w obsłudze klienta: od badań z użytkownikami po pomiar efektów. Skrócenie czasu odpowiedzi wyniosło 22%, a zespół przejął rozwiązanie bez mojego udziału.",
+      "daysAgo": 2
+    },
+    {
+      "queue": "A",
+      "id": "p11-app-a2",
+      "candidateId": "p11-cand-a2",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Zautomatyzowałem cotygodniowe raportowanie i uporządkowałem obieg dokumentów między trzema zespołami. Zajmowałem się też szkoleniem osób, które korzystały z nowych narzędzi.",
+      "daysAgo": 9,
+      "history": [
+        {
+          "stage": "reviewed",
+          "daysAgo": 8,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "queue": "A",
+      "id": "p11-app-a3",
+      "candidateId": "p11-cand-a3",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Koordynowałam pracę zespołu i wdrożyłam arkusze do śledzenia zamówień. Nie miałam jeszcze okazji pracować z narzędziami AI, ale chętnie się ich nauczę.",
+      "daysAgo": 12,
+      "history": [
+        {
+          "stage": "rejected",
+          "daysAgo": 11,
+          "note": "Zamknięte w przykładowym scenariuszu."
+        }
+      ]
+    },
+    {
+      "queue": "A",
+      "id": "p11-app-a4",
+      "candidateId": "p11-cand-a4",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Odpowiadałem za wdrożenie asystenta do zgłoszeń w platformie B2B. Zebrałem wymagania na warsztatach, ustaliłem metryki i po wdrożeniu poprawiłem pierwsze wersje promptów.",
+      "daysAgo": 4
+    },
+    {
+      "queue": "A",
+      "id": "p11-app-a5",
+      "candidateId": "p11-cand-a5",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Prowadziłam pilotaż automatycznej klasyfikacji pism i dokumentowałam zmiany w procesie. Najwięcej nauczyłam się na analizie przypadków, w których automat się mylił.",
+      "daysAgo": 1
+    },
+    {
+      "queue": "A",
+      "id": "p11-app-a6",
+      "candidateId": "p11-cand-a6",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Zbudowałem dashboardy i automatyzacje w narzędziach no-code, a potem wspierałem wdrożenie asystenta AI w helpdesku. Chętnie rozwinę kompetencje związane z oceną jakości odpowiedzi.",
+      "daysAgo": 16
+    },
+    {
+      "queue": "A",
+      "id": "p11-app-a7",
+      "candidateId": "p11-cand-a7",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Zaprojektowałam prototyp funkcji opartej o AI w aplikacji mobilnej i sprawdziłam go na grupie testowej. Najważniejsze było ustalenie, kiedy użytkownik powinien mieć możliwość poprawy wyniku.",
+      "daysAgo": 10,
+      "history": [
+        {
+          "stage": "reviewed",
+          "daysAgo": 9,
+          "note": ""
+        },
+        {
+          "stage": "interview_invited",
+          "daysAgo": 8,
+          "note": "Zaproszenie wysłane (dane przykładowe)."
+        }
+      ]
+    },
+    {
+      "queue": "A",
+      "id": "p11-app-a8",
+      "candidateId": "p11-cand-a8",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Prowadziłem projekty IT dla klientów i dbałem o plan oraz komunikację. Rolę produktową znam z perspektywy współpracy, a nad kompetencjami AI pracuję w kursach.",
+      "daysAgo": 6,
+      "history": [
+        {
+          "stage": "reviewed",
+          "daysAgo": 5,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b1",
+      "candidateId": "p11-cand-b1",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Prowadziłam pilotaż automatyzacji w zespole wsparcia: wywiady z użytkownikami, metryki i kolejne iteracje. Czas obsługi spadł o 20%, a rozwiązanie zostało w zespole na stałe.",
+      "daysAgo": 2
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b2",
+      "candidateId": "p11-cand-b2",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Zautomatyzowałem miesięczne zestawienia i uporządkowałem obieg dokumentów między trzema działami. Zajmowałem się też szkoleniem osób, które pracowały z nowymi narzędziami.",
+      "daysAgo": 9,
+      "history": [
+        {
+          "stage": "reviewed",
+          "daysAgo": 8,
+          "note": ""
+        }
+      ]
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b3",
+      "candidateId": "p11-cand-b3",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Koordynowałam pracę zespołu i wdrożyłam arkusze do śledzenia reklamacji. Nie pracowałam jeszcze z narzędziami AI, ale chętnie nadrobię tę wiedzę.",
+      "daysAgo": 12,
+      "history": [
+        {
+          "stage": "rejected",
+          "daysAgo": 11,
+          "note": "Zamknięte w przykładowym scenariuszu."
+        }
+      ]
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b4",
+      "candidateId": "p11-cand-b4",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Odpowiadałem za wdrożenie podpowiedzi do zgłoszeń w platformie B2B. Zebrałem wymagania na warsztatach, ustaliłem metryki i po starcie poprawiłem pierwsze wersje reguł.",
+      "daysAgo": 4
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b5",
+      "candidateId": "p11-cand-b5",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Prowadziłam pilotaż automatycznej klasyfikacji wniosków i dokumentowałam zmiany w procesie. Najwięcej nauczyłam się na analizie przypadków, w których automat się mylił.",
+      "daysAgo": 1
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b6",
+      "candidateId": "p11-cand-b6",
+      "jobId": "20000000-0000-4000-8000-000000000004",
+      "answer": "Zbudowałem raporty i automatyzacje w narzędziach no-code, a potem wspierałem wdrożenie asystenta AI w obsłudze klienta. Chętnie rozwinę kompetencje związane z oceną jakości odpowiedzi.",
+      "daysAgo": 16
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b7",
+      "candidateId": "p11-cand-b7",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Zaprojektowałam prototyp funkcji opartej o rekomendacje w aplikacji mobilnej i sprawdziłam go na grupie testowej. Najważniejsze było ustalenie, kiedy użytkownik może poprawić wynik.",
+      "daysAgo": 10,
+      "history": [
+        {
+          "stage": "reviewed",
+          "daysAgo": 9,
+          "note": ""
+        },
+        {
+          "stage": "interview_invited",
+          "daysAgo": 8,
+          "note": "Zaproszenie wysłane (dane przykładowe)."
+        }
+      ]
+    },
+    {
+      "queue": "B",
+      "id": "p11-app-b8",
+      "candidateId": "p11-cand-b8",
+      "jobId": "20000000-0000-4000-8000-000000000001",
+      "answer": "Prowadziłem projekty IT dla klientów i dbałem o plan oraz raportowanie. Rolę produktową znam z perspektywy współpracy, a kompetencje AI rozwijam w kursach online.",
+      "daysAgo": 6,
+      "history": [
+        {
+          "stage": "reviewed",
+          "daysAgo": 5,
+          "note": ""
+        }
+      ]
+    }
+  ]
+}
