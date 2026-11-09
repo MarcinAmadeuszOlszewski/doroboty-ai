@@ -17,6 +17,12 @@ function browserStorage(): StoragePort | null {
     return null;
   }
 }
+/** Keep the signed-in persona across a replace when it still exists, so the workspace shell stays. */
+function keepActivePerson(next: State, activePersonId: string | null): State {
+  return activePersonId !== null && next.people.some((x) => x.id === activePersonId)
+    ? { ...next, activePersonId }
+    : next;
+}
 function useStore() {
   const [loaded] = useState(() => readState(browserStorage()));
   const [state, setState] = useState(loaded.state);
@@ -54,7 +60,7 @@ function useStore() {
   }
   function loadP11Session(queue: P11Queue) {
     const at = new Date();
-    commit(buildP11Session(at, queue), true);
+    commit(keepActivePerson(buildP11Session(at, queue), latest.current.activePersonId), true);
     const info = { queue, at: at.toISOString() };
     setP11Load(info);
     writeLoadInfo(browserStorage(), info);
@@ -95,7 +101,7 @@ function useStore() {
     loadP11Session,
     clearError: () => setError(""),
     reset: () => {
-      commit(initialState(), true);
+      commit(keepActivePerson(initialState(), latest.current.activePersonId), true);
       forgetP11Load();
     },
   };

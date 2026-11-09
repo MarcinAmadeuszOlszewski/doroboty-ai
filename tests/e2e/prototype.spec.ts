@@ -219,12 +219,15 @@ test("invalid import preserves state, valid import replaces state, reset asks fo
   await expect(page.getByText("Zaimportowana Anna", { exact: true }).first()).toBeVisible();
   await page.getByRole("button", { name: "Resetuj scenariusz", exact: true }).click();
   await page.getByRole("button", { name: "Resetuj", exact: true }).click();
+  await expect(page.getByText("Przywrócono scenariusz początkowy.")).toBeVisible();
+  await expect(page.getByRole("navigation", { name: "Panel użytkownika" })).toBeVisible();
+  await expect(page.getByText("Zaimportowana Anna", { exact: true })).toHaveCount(0);
   expect(
     await page.evaluate(
       (key) => JSON.parse(localStorage.getItem(key)!).activePersonId,
       STORAGE_KEY,
     ),
-  ).toBe(null);
+  ).toBe("candidate-anna");
 });
 test("unreadable save stays untouched while the user works in memory", async ({ page }) => {
   await page.goto("/");
@@ -1004,9 +1007,11 @@ test("P11 session: load queue, reminder cues, filter, clearing and the OFF varia
   const checkbox = page.getByRole("checkbox", {
     name: "Przypomnienie o czekających zgłoszeniach w tej rundzie",
   });
+  await choose(page, "Karolina Wiśniewska");
   await page.goto("/#/app/settings");
   await page.getByRole("button", { name: "Załaduj kolejkę A", exact: true }).click();
   await page.getByRole("button", { name: "Załaduj", exact: true }).click();
+  await expect(page.getByRole("navigation", { name: "Panel użytkownika" })).toBeVisible();
   await expect(page.getByRole("status")).toContainText("Załadowano sesję P11 · kolejka A");
   await expect(page.getByRole("status")).toContainText("(UTC 20");
 
