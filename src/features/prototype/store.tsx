@@ -1,6 +1,15 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { initialState, transition, type Action, type State } from "./model";
 import { parseState, readState, saveState, type StoragePort } from "./storage";
+import {
+  buildP11Session,
+  readLoadInfo,
+  readReminder,
+  writeLoadInfo,
+  writeReminder,
+  type P11LoadInfo,
+  type P11Queue,
+} from "./p11";
 function browserStorage(): StoragePort | null {
   try {
     return window.localStorage;
@@ -14,6 +23,8 @@ function useStore() {
   const [issue, setIssue] = useState(loaded.issue);
   const [error, setError] = useState("");
   const [blocked, setBlocked] = useState(loaded.blocked);
+  const [reminder, setReminderState] = useState(() => readReminder(browserStorage()));
+  const [p11Load, setP11Load] = useState<P11LoadInfo | null>(() => readLoadInfo(browserStorage()));
   const latest = useRef(state);
   function commit(next: State, replace = false) {
     latest.current = next;
@@ -41,10 +52,26 @@ function useStore() {
       return false;
     }
   }
+  function loadP11Session(queue: P11Queue) {
+    const at = new Date();
+    commit(buildP11Session(at, queue), true);
+    const info = { queue, at: at.toISOString() };
+    setP11Load(info);
+    writeLoadInfo(browserStorage(), info);
+  }
+  function setReminder(on: boolean) {
+    setReminderState(on);
+    return writeReminder(browserStorage(), on);
+  }
+  function forgetP11Load() {
+    setP11Load(null);
+    writeLoadInfo(browserStorage(), null);
+  }
   function importState(raw: string) {
     try {
       const next = parseState(raw);
       commit(next, true);
+      forgetP11Load();
       return true;
     } catch (e) {
       setError((e as Error).message);
@@ -62,8 +89,15 @@ function useStore() {
     original: loaded.original,
     run,
     importState,
+    reminder,
+    setReminder,
+    p11Load,
+    loadP11Session,
     clearError: () => setError(""),
-    reset: () => commit(initialState(), true),
+    reset: () => {
+      commit(initialState(), true);
+      forgetP11Load();
+    },
   };
 }
 type Store = ReturnType<typeof useStore>;

@@ -66,6 +66,28 @@ export function writeReminder(storage: StoragePort | null, on: boolean): boolean
 export type P11Queue = "A" | "B";
 export const P11_QUEUES: readonly P11Queue[] = ["A", "B"];
 
+/** Which queue the facilitator loaded and when. Kept outside `State` so exports stay unchanged. */
+export const LOAD_STORAGE_KEY = "doroboty.p11.load";
+const loadInfoSchema = z.object({ queue: z.enum(["A", "B"]), at: z.iso.datetime() });
+export type P11LoadInfo = z.infer<typeof loadInfoSchema>;
+export function readLoadInfo(storage: StoragePort | null): P11LoadInfo | null {
+  if (!storage) return null;
+  try {
+    const raw = storage.getItem(LOAD_STORAGE_KEY);
+    return raw ? loadInfoSchema.parse(JSON.parse(raw)) : null;
+  } catch {
+    return null;
+  }
+}
+export function writeLoadInfo(storage: StoragePort | null, info: P11LoadInfo | null): void {
+  if (!storage) return;
+  try {
+    storage.setItem(LOAD_STORAGE_KEY, info ? JSON.stringify(info) : "");
+  } catch {
+    // The status line is a convenience; the session data itself is saved by the store.
+  }
+}
+
 const seedSchema = z.object({
   personas: z
     .array(

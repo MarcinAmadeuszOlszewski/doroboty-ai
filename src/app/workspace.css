@@ -1002,6 +1002,16 @@ code {
 .prototype-form > [data-slot="button"] {
   justify-self: start;
 }
+.p11-setting {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--gui-space-s);
+  cursor: pointer;
+}
+.p11-setting [role="checkbox"] {
+  margin-top: 3px;
+  flex-shrink: 0;
+}
 .prototype-notice {
   padding: var(--gui-space-s) var(--gui-space-m);
   margin-bottom: var(--gui-space-m);
