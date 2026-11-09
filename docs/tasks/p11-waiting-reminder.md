@@ -43,4 +43,6 @@ Earlier, before the environment fixes, the same code passed lint, typecheck, uni
 
 Screenshot: `artifacts/p11-kandydaci-mobile.png` (390 px, reminder ON, queue A after one invite; git-ignored).
 
-Not run: manual dry run of the session script (Phase 7), CI, any human review.
+Manual verification (plan Phase 7, rows 7.1–7.15) was performed and confirmed by the user on 2026-11-09, after the sidebar fix `fdad1c4`; it is the user's report, not a recorded transcript.
+
+Not run: CI, any independent code review.

@@ -543,18 +543,18 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 #### Manual
 
-- [ ] 7.1 Task note reads as accurate intent and acceptance criteria
-- [ ] 7.2 Seed copy reads as plausible, synthetic Polish candidate data, with no real persons
-- [ ] 7.3 Without loading the session, employer Moje oferty and Kandydaci look exactly as before (no date line, no banner)
-- [ ] 7.4 Load queue A → confirm → the status shows queue and load time; the persona picker lists the employers; after a reload the session data persists
-- [ ] 7.5 The reminder checkbox state survives a reload; keyboard-only operation works (Tab, Space, Enter in the dialog)
-- [ ] 7.6 Queue A with reminder ON: banner reads "4 zgłoszenia czekają ponad 3 dni"; the 4 overdue cards show the cobalt clock and "Czeka N dni"
-- [ ] 7.7 "Pokaż je" filters to 4 cards; "Pokaż wszystkie zgłoszenia" restores the list in the same order
-- [ ] 7.8 Invite one overdue application → back to the list → count 3. Mark one "W przeglądzie" → count unchanged
-- [ ] 7.9 BrightLabs landing banner shows 4 and per-job counts add up to 4; "Pokaż je" lands on the filtered list
-- [ ] 7.10 Load queue B → BrightLabs shows queue B's candidates (none from A) with 4 overdue; Northstar shows no session applications
-- [ ] 7.11 Reminder OFF: no banner, no per-job counts, no "Czeka"; dates visible on Kandydaci; same order as ON; landing identical to today
-- [ ] 7.12 Desktop and 390px mobile pass of the Settings panel, landing and Kandydaci in both variants: lines wrap, no horizontal scroll, focus visible, keyboard reachability
-- [ ] 7.13 Dry run of the full session script, two rounds (A with ON, B with OFF) on desktop; export after each round can be scored with the primary and secondary ranks
-- [ ] 7.14 FEATURES entries match the observed behaviour
-- [ ] 7.15 Reviewed diff before claiming completion
+- [x] 7.1 Task note reads as accurate intent and acceptance criteria
+- [x] 7.2 Seed copy reads as plausible, synthetic Polish candidate data, with no real persons
+- [x] 7.3 Without loading the session, employer Moje oferty and Kandydaci look exactly as before (no date line, no banner)
+- [x] 7.4 Load queue A → confirm → the status shows queue and load time; the persona picker lists the employers; after a reload the session data persists
+- [x] 7.5 The reminder checkbox state survives a reload; keyboard-only operation works (Tab, Space, Enter in the dialog)
+- [x] 7.6 Queue A with reminder ON: banner reads "4 zgłoszenia czekają ponad 3 dni"; the 4 overdue cards show the cobalt clock and "Czeka N dni"
+- [x] 7.7 "Pokaż je" filters to 4 cards; "Pokaż wszystkie zgłoszenia" restores the list in the same order
+- [x] 7.8 Invite one overdue application → back to the list → count 3. Mark one "W przeglądzie" → count unchanged
+- [x] 7.9 BrightLabs landing banner shows 4 and per-job counts add up to 4; "Pokaż je" lands on the filtered list
+- [x] 7.10 Load queue B → BrightLabs shows queue B's candidates (none from A) with 4 overdue; Northstar shows no session applications
+- [x] 7.11 Reminder OFF: no banner, no per-job counts, no "Czeka"; dates visible on Kandydaci; same order as ON; landing identical to today
+- [x] 7.12 Desktop and 390px mobile pass of the Settings panel, landing and Kandydaci in both variants: lines wrap, no horizontal scroll, focus visible, keyboard reachability
+- [x] 7.13 Dry run of the full session script, two rounds (A with ON, B with OFF) on desktop; export after each round can be scored with the primary and secondary ranks
+- [x] 7.14 FEATURES entries match the observed behaviour
+- [x] 7.15 Reviewed diff before claiming completion
