@@ -16,11 +16,20 @@ import { currentPerson, jobSchema } from "./model";
 import { usePrototype } from "./store";
 import { Field } from "./workspace";
 import { Empty, NotFound, PageTitle } from "./shell";
+import { WaitingReminder } from "./waiting-reminder";
+import { isP11Session, overdueApplications, waitingCountLabel } from "./p11";
 
 export function EmployerJobs() {
-  const { state } = usePrototype();
+  const { state, reminder } = usePrototype();
   const person = currentPerson(state)!;
   const jobs = state.jobs.filter((x) => x.companyId === person.companyId);
+  const cue = reminder && isP11Session(state);
+  const overdue = cue
+    ? overdueApplications(
+        state.applications.filter((x) => x.companyId === person.companyId),
+        new Date(),
+      )
+    : [];
   return (
     <>
       <PageTitle
@@ -32,6 +41,7 @@ export function EmployerJobs() {
       >
         Moje oferty
       </PageTitle>
+      {cue && <WaitingReminder count={overdue.length} to="/app/kandydaci?czeka" />}
       <div className="space-y-4">
         {jobs.length ? (
           jobs.map((job) => (
@@ -47,6 +57,8 @@ export function EmployerJobs() {
                   <p className="mt-3 text-muted-foreground">
                     {state.applications.filter((x) => x.jobId === job.id).length} aplikacji ·{" "}
                     {job.publicationStatus === "published" ? "Opublikowana" : "Szkic"}
+                    {overdue.some((x) => x.jobId === job.id) &&
+                      ` · ${waitingCountLabel(overdue.filter((x) => x.jobId === job.id).length)}`}
                   </p>
                 </div>
                 <Link
