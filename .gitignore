@@ -8,3 +8,7 @@ artifacts/
 *.tsbuildinfo
 .env*
 npm-debug.log*
+/.claude/
+/.agent/
+/.github/
+/.idea/
