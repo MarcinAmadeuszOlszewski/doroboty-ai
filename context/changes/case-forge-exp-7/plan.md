@@ -481,9 +481,9 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 #### Automated
 
-- [ ] 1.1 Unit tests pass: `npx vitest run src/features/prototype/p11.test.ts`
-- [ ] 1.2 Types pass: `npm run typecheck`
-- [ ] 1.3 Lint passes: `npm run lint`
+- [x] 1.1 Unit tests pass: `npx vitest run src/features/prototype/p11.test.ts`
+- [x] 1.2 Types pass: `npm run typecheck`
+- [x] 1.3 Lint passes: `npm run lint`
 
 ### Phase 2: Session seed
 
