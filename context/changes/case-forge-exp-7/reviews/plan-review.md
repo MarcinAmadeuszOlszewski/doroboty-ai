@@ -1,4 +1,5 @@
 <!-- PLAN-REVIEW-REPORT -->
+
 # Plan Review: P11 Waiting-Application Reminder — Employer Session Prototype
 
 - **Plan**: context/changes/case-forge-exp-7/plan.md
@@ -9,15 +10,16 @@
 
 ## Verdicts
 
-| Dimension | Verdict |
-|-----------|---------|
-| End-State Alignment | PASS (1 observation) |
-| Lean Execution | PASS |
-| Architectural Fitness | PASS |
-| Blind Spots | WARNING |
-| Plan Completeness | WARNING |
+| Dimension             | Verdict              |
+| --------------------- | -------------------- |
+| End-State Alignment   | PASS (1 observation) |
+| Lean Execution        | PASS                 |
+| Architectural Fitness | PASS                 |
+| Blind Spots           | WARNING              |
+| Plan Completeness     | WARNING              |
 
 ## Grounding
+
 9/9 paths ✓ (store.tsx line refs stale), 8/8 symbols ✓ (transition `now`, commit `replace`, nextStages, people max 100, useSearchParams, AxeBuilder, lucide, Checkbox), brief↔plan ✓, Progress↔Phase ✓. No `docs/reference/contract-surfaces.md`; no `context/foundation/lessons.md`.
 
 ## Findings

@@ -20,6 +20,7 @@ The app already stores the submission time and the stage history for each applic
 Before each round, a facilitator uses Ustawienia → "Sesja testowa P11" to load one of two equivalent synthetic queues (A or B). Both use BrightLabs's two jobs with different candidates. They switch the reminder on or off for each round and export after each round, because the next load replaces the data.
 
 **When the reminder is on:**
+
 - Employers see "4 zgłoszenia czekają ponad 3 dni · Pokaż je" on Moje oferty and on Kandydaci.
 - Each card shows "Czeka N dni".
 
@@ -29,23 +30,24 @@ Inviting or rejecting an application clears it from the count. The export shows 
 
 ## Key Decisions Made
 
-| Decision | Choice | Why (1 sentence) | Source |
-| --- | --- | --- | --- |
-| Persona | Employer | The trigger hits the delay that happens before the screening decision. | Frame |
-| Gate | exp-7 first, prototype only if favourable | exp-7 came back favourable on 2026-11-09. | Frame |
-| Test goal | Noticed and understood, plus with/without comparison | "Acts sooner" means handled first with the reminder versus without it. | Frame |
-| Round structure | Same person, two equivalent queues (A/B) on the same BrightLabs jobs, one loaded per round, A/B and ON/OFF order counterbalanced | Each person is their own control, with no repeated names and no role-type confound (plan review F5). | Plan |
-| What OFF removes | Banner, per-job counts and the "Czeka" cue; the date stays | This tests the whole P11 nudge against a fair baseline that still shows the date. | Plan |
-| What clears waiting | Invite or reject only | Without this, "W przeglądzie" would silence the reminder without a decision. | Plan |
-| Placement | Moje oferty (the landing page) and Kandydaci | The reminder is seen on the first screen, like the email. | Plan |
-| List layout | Keep the cards and add a facts line | Smallest change; the mobile layout and existing e2e tests stay intact. | Plan |
-| Clock | Seed relative to load time; actions use real time | A frozen "now" would collapse the handled-order measure. | Plan |
-| Variant storage | Separate localStorage key, outside `State` | No schema or version change, and existing saves are not broken. | Plan |
-| Default app | `initialState` unchanged; separate session loader; all P11 UI gated on a loaded session | Existing tests and baseline employer pages stay identical. | Plan |
+| Decision            | Choice                                                                                                                           | Why (1 sentence)                                                                                     | Source |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------ |
+| Persona             | Employer                                                                                                                         | The trigger hits the delay that happens before the screening decision.                               | Frame  |
+| Gate                | exp-7 first, prototype only if favourable                                                                                        | exp-7 came back favourable on 2026-11-09.                                                            | Frame  |
+| Test goal           | Noticed and understood, plus with/without comparison                                                                             | "Acts sooner" means handled first with the reminder versus without it.                               | Frame  |
+| Round structure     | Same person, two equivalent queues (A/B) on the same BrightLabs jobs, one loaded per round, A/B and ON/OFF order counterbalanced | Each person is their own control, with no repeated names and no role-type confound (plan review F5). | Plan   |
+| What OFF removes    | Banner, per-job counts and the "Czeka" cue; the date stays                                                                       | This tests the whole P11 nudge against a fair baseline that still shows the date.                    | Plan   |
+| What clears waiting | Invite or reject only                                                                                                            | Without this, "W przeglądzie" would silence the reminder without a decision.                         | Plan   |
+| Placement           | Moje oferty (the landing page) and Kandydaci                                                                                     | The reminder is seen on the first screen, like the email.                                            | Plan   |
+| List layout         | Keep the cards and add a facts line                                                                                              | Smallest change; the mobile layout and existing e2e tests stay intact.                               | Plan   |
+| Clock               | Seed relative to load time; actions use real time                                                                                | A frozen "now" would collapse the handled-order measure.                                             | Plan   |
+| Variant storage     | Separate localStorage key, outside `State`                                                                                       | No schema or version change, and existing saves are not broken.                                      | Plan   |
+| Default app         | `initialState` unchanged; separate session loader; all P11 UI gated on a loaded session                                          | Existing tests and baseline employer pages stay identical.                                           | Plan   |
 
 ## Scope
 
 **In scope:**
+
 - Pure waiting logic and Polish plurals.
 - Two-queue synthetic seed.
 - Settings loader and ON/OFF switch.
@@ -53,6 +55,7 @@ Inviting or rejecting an application clears it from the count. The export shows 
 - E2E journey, FEATURES update (EMP-04/07, SYS-10, new EMP-11), Polish session script with disclosure, `./scripts/verify`.
 
 **Out of scope:**
+
 - Email or real notifications.
 - Experiment assignment or exposure logging.
 - Sorting by waiting time and a table redesign.
@@ -66,15 +69,15 @@ Inviting or rejecting an application clears it from the count. The export shows 
 
 ## Phases at a Glance
 
-| Phase | What it delivers | Key risk |
-| --- | --- | --- |
-| 1. Waiting logic | `p11.ts` helpers, plurals, variant key, task note | Off-by-one at the 3-day threshold |
-| 2. Session seed | 16 synthetic candidates and two equivalent queues, schema-valid | A/B not equivalent; stray `application-example` adds a fifth overdue item |
-| 3. Facilitator setup | Settings panel: load session and ON/OFF switch | The setting is not in the export, so the facilitator must log the variant |
-| 4. Kandydaci list | Date and "Czeka" line, banner, `?czeka` filter | Different order between ON and OFF would bias the comparison |
-| 5. Moje oferty | Landing banner and per-job counts | Polish plural in per-job count |
-| 6. E2E, docs, gate | Browser journey, FEATURES, session script, `./scripts/verify` | Playwright Chromium not provisioned |
-| 7. Manual verification | All manual checks in one pass, after Phases 1–6: both variants, mobile, keyboard, session dry run | Late discovery of UX issues (no per-phase manual stop) |
+| Phase                  | What it delivers                                                                                  | Key risk                                                                  |
+| ---------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| 1. Waiting logic       | `p11.ts` helpers, plurals, variant key, task note                                                 | Off-by-one at the 3-day threshold                                         |
+| 2. Session seed        | 16 synthetic candidates and two equivalent queues, schema-valid                                   | A/B not equivalent; stray `application-example` adds a fifth overdue item |
+| 3. Facilitator setup   | Settings panel: load session and ON/OFF switch                                                    | The setting is not in the export, so the facilitator must log the variant |
+| 4. Kandydaci list      | Date and "Czeka" line, banner, `?czeka` filter                                                    | Different order between ON and OFF would bias the comparison              |
+| 5. Moje oferty         | Landing banner and per-job counts                                                                 | Polish plural in per-job count                                            |
+| 6. E2E, docs, gate     | Browser journey, FEATURES, session script, `./scripts/verify`                                     | Playwright Chromium not provisioned                                       |
+| 7. Manual verification | All manual checks in one pass, after Phases 1–6: both variants, mobile, keyboard, session dry run | Late discovery of UX issues (no per-phase manual stop)                    |
 
 **Prerequisites:** Node 24, `npm ci`, Playwright Chromium for the e2e tests.
 **Estimated effort:** about 2 sessions across 6 implementation phases plus one manual verification pass.

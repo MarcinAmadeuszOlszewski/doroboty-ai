@@ -36,11 +36,13 @@ From the frame (`context/changes/case-forge-exp-7/frame.md`, Hypothesis 4) plus 
 Before each round, a facilitator opens Ustawienia → "Sesja testowa P11", loads queue A or queue B (both on BrightLabs's two jobs, different candidates) and sets the reminder for the round. Then the participant enters as Karolina Wiśniewska (BrightLabs). Loading the next queue replaces the previous round's data, so the facilitator exports after each round.
 
 **Reminder ON:**
+
 - "Moje oferty" shows a banner "4 zgłoszenia czekają ponad 3 dni · Pokaż je", and each job card shows how many of its applications are waiting.
 - "Kandydaci" shows the same banner. Each card has the line "Zgłoszenie 3 lis 2026 · Czeka 6 dni" with a cobalt clock icon when the wait is over 3 days.
 - "Pokaż je" opens `/app/kandydaci?czeka`, filtered to the waiting applications.
 
 **Reminder OFF:**
+
 - No banner, no per-job waiting count, no "Czeka" cue, and `?czeka` is ignored.
 - Each card still shows "Zgłoszenie <date>".
 - List order is identical in both variants.
@@ -71,6 +73,7 @@ The default app (`initialState`, the existing tests, the baseline packet and the
 ## Implementation Approach
 
 Keep everything P11-specific in a new pure module plus one data file. The store gains two things that stay out of the persisted `State`:
+
 - a `loadP11Session(queue)` action that replaces state through the existing replace-commit;
 - a `reminder` boolean persisted under its own localStorage key, default ON.
 
@@ -79,6 +82,7 @@ The UI reads waiting status by calling the pure helpers with `Date.now()` at ren
 **Verification order:** Phases 1–6 carry only automated checks and run back to back. All manual checks are collected in Phase 7 and done once, after everything is implemented.
 
 Two queues, one loaded per round, both on the BrightLabs employer persona:
+
 - Queue A and queue B both use BrightLabs jobs `…0001` (AI Product Manager) and `…0004` (AI Operations Specialist), so role type is identical across rounds.
 - Both have the same wait profile, mirrored scores and the same position pattern.
 - Each queue has different candidate names, so round 2 does not repeat round 1's people. The job ads do repeat; that learning effect is handled by counterbalancing A/B and ON/OFF order.
@@ -119,6 +123,7 @@ Record intent, then add pure waiting-time helpers and the reminder-variant stora
 **Intent**: Single source for waiting status, plural copy and the variant key.
 
 **Contract**:
+
 - Exports `WAIT_THRESHOLD_DAYS = 3`.
 - `waitingDays(application, now: Date): number`.
 - `isWaiting(application): boolean` (stage `submitted` | `reviewed`).
@@ -139,6 +144,7 @@ Record intent, then add pure waiting-time helpers and the reminder-variant stora
 **Intent**: Pin threshold edges and copy.
 
 **Contract**:
+
 - Threshold: 3 days + 23 h is not overdue; 4 days is overdue.
 - `reviewed` still waits; `interview_invited`, `rejected` and `withdrawn` don't.
 - Plurals for 1, 2, 4, 5, 12, 22 and 25, for `waitingSummary`, `daysLabel` and `waitingCountLabel`.
@@ -169,6 +175,7 @@ Two equivalent synthetic queues and a builder that returns a valid `State`.
 **Intent**: Synthetic, clearly fictional session data. It is Polish user-facing text.
 
 **Contract**:
+
 - 16 candidate personas, `id` prefix `p11-`, each with `name`, `headline`, `bio`, `location`, `cv` (≥ 20 chars), `exampleScore` and `exampleSummary`.
 - 16 application templates with `queue: "A" | "B"`, `candidateId`, `jobId`, `answer` (≥ 20 chars) and `daysAgo`. Handled ones also carry `history: [{stage, daysAgo, note}]`.
 - Both queues use BrightLabs jobs `…0001` and `…0004`; each candidate appears once, so `candidateId:jobId` stays unique.
@@ -187,6 +194,7 @@ Two equivalent synthetic queues and a builder that returns a valid `State`.
 **Intent**: Build the full session state from the baseline marketplace plus the seed, relative to `now`.
 
 **Contract**:
+
 - `buildP11Session(now: Date, queue: "A" | "B"): State`. It starts from `initialState()` with `activePersonId: null`, **removes** `application-example`, appends all 16 seed personas, and appends only the chosen queue's 8 applications. The example has a fixed date of 2026-11-02 on BrightLabs job `…0001`. It would add a fifth overdue item to queue A and break A/B equivalence.
 - Event times are `now − daysAgo days − 2 h`. Seeded `jobTitle` and `candidateName` are snapshots.
 - The result goes through `stateSchema.parse`.
@@ -198,6 +206,7 @@ Two equivalent synthetic queues and a builder that returns a valid `State`.
 **Intent**: Guard validity and A/B equivalence.
 
 **Contract**:
+
 - For `now` = 2026-11-09 and 2026-12-31, and for each queue:
   - `stateSchema` parses;
   - every submission comes after its job's `publishedAt`;
@@ -233,6 +242,7 @@ Store support and a Settings section to load the session and set the reminder fo
 **Intent**: Load the session through the same replace-commit as reset. Hold the reminder flag outside `State`.
 
 **Contract**:
+
 - The store adds `loadP11Session(queue: "A" | "B")`, which calls `commit(buildP11Session(new Date(), queue), true)`.
 - It adds `reminder: boolean`, initialized by `readReminder(browserStorage())`.
 - It adds `setReminder(on)`, which updates state and calls `writeReminder`.
@@ -245,6 +255,7 @@ Store support and a Settings section to load the session and set the reminder fo
 **Intent**: Facilitator controls, labelled as simulation.
 
 **Contract**: A new panel "Sesja testowa P11" after "Dane scenariusza":
+
 - One sentence explaining that loading replaces local data with one synthetic BrightLabs queue (A or B), that ages are counted from load time, and that the previous round must be exported first.
 - Two buttons, "Załaduj kolejkę A" and "Załaduj kolejkę B". Each opens the existing `ConfirmDialog`; the `pending` union becomes `"reset" | "import" | "p11-A" | "p11-B"`.
   - `confirm()`, the dialog title, description and label switch explicitly on every case. Today they are binary (`settings.tsx:40-48,108-110`), so a p11 value would otherwise fall into `importState(raw)`.
@@ -278,6 +289,7 @@ Waiting cue, banner and filter on `/app/kandydaci` for employers.
 **Intent**: The recipe banner, reused on two pages.
 
 **Contract**:
+
 - `WaitingReminder({ count, to?: string })` renders nothing when `count === 0`.
 - Markup is a `<section aria-label="Przypomnienie o czekających zgłoszeniach">` with a lucide `Clock` (steel, `aria-hidden`), the `waitingSummary(count)` text with the number in weight 600, and an optional `Link` "Pokaż je".
 - Styles live in `src/app/workspace.css`:
@@ -292,6 +304,7 @@ Waiting cue, banner and filter on `/app/kandydaci` for employers.
 **Intent**: Show the submission date always, and the waiting cue, banner and filter only when the reminder is ON.
 
 **Contract**: For employer only, and only when `isP11Session(state)`. Without a session the page is unchanged.
+
 - Each card gets the facts line "Zgłoszenie {date pl-PL}". When reminder ON and the application is waiting, it adds " · {daysLabel}". When overdue, a cobalt `Clock` icon is added and the days are in weight 600.
 - Banner above the search field when reminder ON. `to` = `/app/kandydaci?czeka` unless already filtered. When filtered, show the banner without the link, plus the text link "Pokaż wszystkie zgłoszenia".
 - `?czeka` with reminder ON → show only overdue; with reminder OFF → ignore it.
@@ -322,6 +335,7 @@ Make the reminder visible on the employer's first screen.
 **Intent**: The banner shows the company-wide overdue count, and each job card shows its own count.
 
 **Contract**:
+
 - Only when `isP11Session(state)` and reminder ON: `WaitingReminder` with the company-wide overdue count and `to="/app/kandydaci?czeka"`, placed above the job list.
 - Each job card's meta line appends " · {waitingCountLabel(n)}" when n > 0 (e.g. "2 czekają ponad 3 dni"; helper defined and tested in Phase 1).
 - When reminder OFF or with no session: unchanged from today.
@@ -349,6 +363,7 @@ Browser proof, behaviour register, session script with data disclosure, and the 
 **Intent**: One journey covering the session lifecycle.
 
 **Contract**:
+
 1. Settings → "Załaduj kolejkę A" → confirm → enter as Karolina Wiśniewska → landing banner "4 zgłoszenia czekają ponad 3 dni".
 2. "Pokaż je" → 4 cards → invite one (Aplikacja wysłana → W przeglądzie → Zaproszenie, or directly from `reviewed`) → banner 3.
 3. Reload → still 3.
@@ -363,6 +378,7 @@ Browser proof, behaviour register, session script with data disclosure, and the 
 **Intent**: Describe actual behaviour; stable IDs are preserved.
 
 **Contract**:
+
 - Update EMP-04 (landing waiting counts) and EMP-07 (submission date, waiting cue, `?czeka` filter).
 - Update EMP-10 (Settings gains the "Sesja testowa P11" panel).
 - Update SYS-10 (P11 session load, reminder key outside export).
@@ -375,6 +391,7 @@ Browser proof, behaviour register, session script with data disclosure, and the 
 **Intent**: The facilitator scenario the course asks for, including the prepared-data disclosure.
 
 **Contract**:
+
 - Goal and success signals (noticed/understood; overdue handled first in ON vs OFF).
 - Setup per round: load the round's queue (A or B) **immediately before the round**, because ages are fixed at load time and loading about 46 hours early turns the 2-day fresh application into an overdue one. Loading replaces the previous round's data, so **export JSON before loading the next queue**. The facilitator sets the variant in Settings before handing over, so the participant never sees the switch. Counterbalance both A/B order and ON/OFF order between participants. The participant always enters as Karolina Wiśniewska (BrightLabs).
 - A neutral task instruction ("Przejrzyj zgłoszenia i podejmij decyzje, które uważasz za potrzebne", without the word "czeka").
@@ -492,14 +509,14 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 - [x] 2.1 Seed and logic tests pass: `npx vitest run src/features/prototype/p11.test.ts` — c79e771
 - [x] 2.2 Existing unit suite still passes: `npm test` — c79e771
 - [x] 2.3 Types pass: `npm run typecheck` — c79e771
-- [ ] 2.4 Participant packet check passes: `npm run verify:packet`
+- [x] 2.4 Participant packet check passes: `npm run verify:packet`
 
 ### Phase 3: Facilitator setup
 
 #### Automated
 
 - [x] 3.1 Types, lint and unit tests pass — c5f17bd
-- [ ] 3.2 Format passes: `npm run format:check`
+- [x] 3.2 Format passes: `npm run format:check`
 
 ### Phase 4: Kandydaci list
 
@@ -518,8 +535,8 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 #### Automated
 
-- [ ] 6.1 Full gate passes: `./scripts/verify`
-- [ ] 6.2 Poster People kit untouched: `npm run design-system:check`
+- [x] 6.1 Full gate passes: `./scripts/verify`
+- [x] 6.2 Poster People kit untouched: `npm run design-system:check`
 - [x] 6.3 Missing Playwright Chromium reported, not installed — 731d880
 
 ### Phase 7: Manual verification (after all phases)

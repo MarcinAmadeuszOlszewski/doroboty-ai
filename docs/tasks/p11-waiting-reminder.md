@@ -25,26 +25,22 @@ Email or notification delivery, scheduler, experiment assignment or exposure log
 
 ## Environment notes
 
-- `npm run verify:packet` fails in this Windows checkout both before and after the P11 changes: `core.autocrlf=true` turns `public/case/baseline.csv` into CRLF while the script compares against LF output. Run against the committed (LF) blobs (`git show HEAD:...` into a temp root) it passes: "Baseline packet verified: 120 journeys". The P11 changes do not touch the packet.
-- Playwright's expected Chromium build (1243) is not installed here; only 1223 is. Nothing was installed. E2E runs used a temporary `playwright.local.config.ts` (deleted afterwards) that spread the base config and added `use.launchOptions.executablePath` pointing at `%LOCALAPPDATA%/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-win64/chrome-headless-shell.exe`; invocation: `npx playwright test -c playwright.local.config.ts --workers=1` after `npm run build`. With the default 8 workers two heavy journeys timed out at 30 s (both pass in isolation); with `--workers=2` all 34 passed.
-- `npm run format:check` fails repo-wide in this checkout (CRLF working copies vs `endOfLine: lf`); the files touched by P11 pass `prettier --check`.
+- The checkout had CRLF working copies (`core.autocrlf=true`), which broke `format:check`, `design-system:check` and `verify:packet`. Fixed locally with `git config core.autocrlf input` and a re-checkout (`git rm --cached -r . && git reset --hard` on a clean tree). Nothing in the repository changed for this.
+- Playwright's Chromium build 1243 was installed with `npx playwright install chromium` (browser only, no OS dependencies).
+- `docs/design-system/agent-kit` checks hard-require Node 24 (the project's `engines` allows 24–26, but the kit script does not). The gate was run with a portable Node v24.22.2 from nodejs.org (SHA-256 checked) placed first on `PATH`; nothing was installed system-wide.
+- Five Markdown files under `context/changes/` (the change's frame, plan-brief, plan, plan-review and `case-forge/frame.md`) were reformatted by Prettier so `format:check` passes; no content change.
 
 ## Evidence
 
-Run on 2026-11-09, Windows, Node v26.13.0 (project targets Node 24), `core.autocrlf=true`.
+Run on 2026-11-09, Windows, Node v24.22.2 (portable), LF working copy.
 
-| Check                                                                                                  | Result                                                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `npx vitest run src/features/prototype/p11.test.ts`                                                    | 12 passed                                                                                                                                                              |
-| `npm test`                                                                                             | 6 files, 39 tests passed                                                                                                                                               |
-| `npm run typecheck`, `npm run lint`                                                                    | passed                                                                                                                                                                 |
-| `npm run build`                                                                                        | passed                                                                                                                                                                 |
-| e2e, full suite incl. new P11 journey (axe on Kandydaci with reminder ON, 390 px no horizontal scroll) | 35 passed with `--workers=1` (see environment notes for the local Chromium)                                                                                            |
-| `npx prettier --check` on every file P11 touched                                                       | passed                                                                                                                                                                 |
-| `./scripts/verify` as a whole                                                                          | **fails in this checkout** at `format:check` (146 files, all CRLF working copies; none are P11 files)                                                                  |
-| `npm run design-system:check`                                                                          | **fails in this checkout** ("Agent-kit reference changed: .nvmrc", hash vs CRLF working copy); `git diff HEAD -- docs/design-system` is empty, so the kit is unchanged |
-| `npm run verify:packet`                                                                                | fails here for the same CRLF reason; passes on the committed LF blobs                                                                                                  |
+| Check                                                                                 | Result                                                                                                                       |
+| ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `./scripts/verify` (format, design-system, lint, typecheck, unit, packet, build, e2e) | exit 0: design-system 67 files match; 39 unit tests; packet 120 journeys; build ok; 35 e2e passed (1.8 min, default workers) |
+| New e2e journey "P11 session: …"                                                      | passed inside the full run (axe on Kandydaci with reminder ON, 390 px no horizontal scroll)                                  |
 
-Screenshot: `artifacts/p11-kandydaci-mobile.png` (390 px, reminder ON, queue A after one invite).
+Earlier, before the environment fixes, the same code passed lint, typecheck, unit tests, build and 35 e2e tests with a locally installed older Chromium.
+
+Screenshot: `artifacts/p11-kandydaci-mobile.png` (390 px, reminder ON, queue A after one invite; git-ignored).
 
 Not run: manual dry run of the session script (Phase 7), CI, any human review.

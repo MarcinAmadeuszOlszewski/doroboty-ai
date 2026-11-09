@@ -1,6 +1,6 @@
 # Frame Brief: Case Forge — prototype of the P6 evidence card
 
-> Framing step before /10x-plan. This document captures what is *actually*
+> Framing step before /10x-plan. This document captures what is _actually_
 > at issue, separated from what was initially assumed.
 
 ## Reported Observation
@@ -37,12 +37,12 @@ the prototype for a chosen role and test the task with a person.
 
 ## Hypothesis Investigation
 
-| Hypothesis | Evidence | Verdict |
-| --- | --- | --- |
-| 1. App data cannot feed the card | `jobSchema` has no criteria field (`src/features/prototype/model.ts:28-56`); requirements exist only as prose in `description` (`data/marketplace.json`). Seed: 2 candidates with near-identical texts (`data/people.json:9,20`), 1 application (`model.ts:228-246`). `stateSchema` is strict (`model.ts:133`) — new fields need schema change before import. `sourceNotes`/`generatedAnswer` still exist (`model.ts:116-117`). | STRONG |
-| 2. Decision point shows no structured evidence | Stage actions only in detail view (`recruiting-application.tsx:32-53`); list has no actions (`workspace.tsx:413-466`). List shows name/job/stage/Match Score/summary; score+summary are fixed per persona, identical for every job (`model.ts:313-314`). No comparison view per job. | STRONG |
-| 3. Role-play session cannot answer discovery's open questions | exp-3 = card correctness on June data; exp-5 = real employers, measures after real interviews (`bet-pack-opp2.md` §exp-3, §exp-5). exp-3: "nie rozstrzyga, czy pracodawca zaprosi inne osoby". No usability/clickable test planned anywhere in discovery. | STRONG |
-| 4. Card content is the main risk | P6 risk "błędne cytaty, tekst asystenta" (`04-ideas.md:213,256`); sig-14 example `app-036665` (raw: "Wdrożenie prowadziła inna osoba" → final: "Uczestniczyłem w … doskonaleniu"). Card format and build rules in `materials-opp2.md` §Karta dowodów. Real criteria text available in `applications.csv` `screening_criteria_text`. | STRONG (as a constraint, not a cause) |
+| Hypothesis                                                    | Evidence                                                                                                                                                                                                                                                                                                                                                                                                                        | Verdict                               |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| 1. App data cannot feed the card                              | `jobSchema` has no criteria field (`src/features/prototype/model.ts:28-56`); requirements exist only as prose in `description` (`data/marketplace.json`). Seed: 2 candidates with near-identical texts (`data/people.json:9,20`), 1 application (`model.ts:228-246`). `stateSchema` is strict (`model.ts:133`) — new fields need schema change before import. `sourceNotes`/`generatedAnswer` still exist (`model.ts:116-117`). | STRONG                                |
+| 2. Decision point shows no structured evidence                | Stage actions only in detail view (`recruiting-application.tsx:32-53`); list has no actions (`workspace.tsx:413-466`). List shows name/job/stage/Match Score/summary; score+summary are fixed per persona, identical for every job (`model.ts:313-314`). No comparison view per job.                                                                                                                                            | STRONG                                |
+| 3. Role-play session cannot answer discovery's open questions | exp-3 = card correctness on June data; exp-5 = real employers, measures after real interviews (`bet-pack-opp2.md` §exp-3, §exp-5). exp-3: "nie rozstrzyga, czy pracodawca zaprosi inne osoby". No usability/clickable test planned anywhere in discovery.                                                                                                                                                                       | STRONG                                |
+| 4. Card content is the main risk                              | P6 risk "błędne cytaty, tekst asystenta" (`04-ideas.md:213,256`); sig-14 example `app-036665` (raw: "Wdrożenie prowadziła inna osoba" → final: "Uczestniczyłem w … doskonaleniu"). Card format and build rules in `materials-opp2.md` §Karta dowodów. Real criteria text available in `applications.csv` `screening_criteria_text`.                                                                                             | STRONG (as a constraint, not a cause) |
 
 ## Narrowing Signals
 
@@ -74,8 +74,8 @@ OPS-06) and must be disclosed in the work description (`change.md`).
 > at the invite decision — so exp-8 (does a lay recruiter read the card
 > correctly and not over-trust it) cannot be run.
 
-The initial framing (P6 + P11, measure change of choice) held on the *idea*
-(P6 is right and leading) but not on the *test*: a role-player cannot produce
+The initial framing (P6 + P11, measure change of choice) held on the _idea_
+(P6 is right and leading) but not on the _test_: a role-player cannot produce
 evidence about invitations, and P11 is a different question (timing) that
 dilutes a comprehension session. The prototype is the vehicle for exp-8, not
 a demonstration that the card changes hiring outcomes.
@@ -99,6 +99,7 @@ protocol.
 
 **exp-3 gate — run 2026-11-08, judged unfavourable 2026-11-09**
 (`.../experiments/exp-3/results.md`). 20 blinded cards:
+
 - Quotes: 70/70 verbatim.
 - Strength: 18 strong / 2 weak. That ceiling makes the discrimination
   metrics uninformative.
@@ -107,14 +108,16 @@ protocol.
   identical.
 
 Open before planning:
+
 - the user's second-person check (`check.md`, 6 cards);
 - the user's exp-3 verdict.
 
 **The reframe below depends on that verdict.** The bet-pack counts "nie
-różnicują decyzji" as *niekorzystny*. The exp-8 decision record says an
+różnicują decyzji" as _niekorzystny_. The exp-8 decision record says an
 unfavourable exp-3 drops exp-8 and exp-5.
 
 Two honest readings:
+
 - **(a) Unfavourable, read literally.** No exp-8, and the bet-pack points to P10.
 - **(b) Inconclusive.** The frozen strength rule failed, not the card. Rerun
   only the discrimination part with a new rule and a new sample.
@@ -123,6 +126,7 @@ Under (a), the course task still requires a prototype tested with a person,
 but its vehicle is no longer settled. That tension is the user's call.
 
 Only if exp-8 proceeds, constraints for its cards:
+
 - pick 6 visibly different cards from one job;
 - build the assistant-text hard case separately, because none of the 20 has it.
 
