@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from "react-router";
-import { CheckCircle2, FileText } from "lucide-react";
+import { CheckCircle2, Clock, FileText } from "lucide-react";
 import { ConfettiBurst, type ConfettiOrigin } from "@/components/confetti-burst";
 import { BackLink } from "@/components/back-link";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -16,6 +16,14 @@ import { CvAttachment } from "./cv-attachment";
 import { MatchScore } from "./match-score";
 import { RecruitingApplication } from "./recruiting-application";
 import { CandidateApplication } from "./candidate-application";
+import { WaitingReminder } from "./waiting-reminder";
+import { daysLabel, isOverdue, isP11Session, isWaiting, waitingDays } from "./p11";
+
+const submittedDate = new Intl.DateTimeFormat("pl-PL", {
+  day: "numeric",
+  month: "short",
+  year: "numeric",
+});
 
 export function Field({ label, children }: { label: string; children: ReactNode }) {
   return (
@@ -411,13 +419,21 @@ export function ApplyPage() {
   );
 }
 export function ApplicationsPage({ employer = false }: { employer?: boolean }) {
-  const { state } = usePrototype();
+  const { state, reminder } = usePrototype();
   const person = currentPerson(state)!;
   const [query, setQuery] = useState("");
   const [params] = useSearchParams();
+  const now = new Date();
+  const session = employer && isP11Session(state);
+  const cue = session && reminder;
+  const filtered = cue && params.has("czeka");
+  const overdueCount = cue
+    ? state.applications.filter((x) => x.companyId === person.companyId && isOverdue(x, now)).length
+    : 0;
   const applications = state.applications.filter(
     (x) =>
       (employer ? x.companyId === person.companyId : x.candidateId === person.id) &&
+      (!filtered || isOverdue(x, now)) &&
       `${x.candidateName} ${x.jobTitle}`
         .toLocaleLowerCase("pl")
         .includes(query.toLocaleLowerCase("pl")),
@@ -429,6 +445,14 @@ export function ApplicationsPage({ employer = false }: { employer?: boolean }) {
         <Notice>
           <CheckCircle2 className="inline size-5" /> Aplikacja została wysłana.
         </Notice>
+      )}
+      {cue && (
+        <WaitingReminder count={overdueCount} to={filtered ? undefined : "/app/kandydaci?czeka"} />
+      )}
+      {filtered && (
+        <Link className="waiting-reminder-all" to="/app/kandydaci">
+          Pokaż wszystkie zgłoszenia
+        </Link>
       )}
       <Field label={employer ? "Szukaj kandydata lub oferty" : "Szukaj oferty"}>
         <Input value={query} onChange={(e) => setQuery(e.target.value)} />
@@ -454,6 +478,24 @@ export function ApplicationsPage({ employer = false }: { employer?: boolean }) {
                 </div>
                 <MatchScore score={a.score} />
               </div>
+              {employer && session && (
+                <p className="mt-4 text-muted-foreground">
+                  Zgłoszenie {submittedDate.format(new Date(a.events[0].at))}
+                  {cue && isWaiting(a) && (
+                    <>
+                      {" · "}
+                      {isOverdue(a, now) ? (
+                        <span className="waiting-cue">
+                          <Clock aria-hidden="true" className="waiting-cue-icon" />
+                          {daysLabel(waitingDays(a, now))}
+                        </span>
+                      ) : (
+                        daysLabel(waitingDays(a, now))
+                      )}
+                    </>
+                  )}
+                </p>
+              )}
               {employer && <p className="mt-4 text-muted-foreground">{a.summary}</p>}
             </article>
           ))

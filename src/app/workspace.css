@@ -1002,6 +1002,58 @@ code {
 .prototype-form > [data-slot="button"] {
   justify-self: start;
 }
+.waiting-reminder {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--gui-space-xs) var(--gui-space-s);
+  margin-bottom: var(--gui-space-m);
+  padding: var(--gui-space-s) var(--gui-space-m);
+  background: var(--gui-color-1-transparent);
+  box-shadow: var(--gui-accent-bar-shadow);
+  border-radius: var(--gui-radius-s);
+}
+.waiting-reminder-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  color: var(--gui-neutral-7);
+}
+.waiting-reminder p strong {
+  font-weight: 600;
+}
+.waiting-reminder-link,
+.waiting-reminder-all {
+  color: var(--gui-link);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.waiting-reminder-all {
+  display: block;
+  margin-bottom: var(--gui-space-m);
+}
+.waiting-reminder-link:focus-visible,
+.waiting-reminder-all:focus-visible {
+  outline: 2px solid var(--gui-focus);
+  outline-offset: 2px;
+}
+.waiting-cue {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--gui-space-xxs);
+  font-weight: 600;
+  color: var(--foreground);
+}
+.waiting-cue-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--gui-color-1);
+}
 .p11-setting {
   display: flex;
   align-items: flex-start;

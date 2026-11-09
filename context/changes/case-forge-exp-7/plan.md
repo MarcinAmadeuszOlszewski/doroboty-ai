@@ -498,15 +498,15 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 #### Automated
 
-- [x] 3.1 Types, lint and unit tests pass
-- [x] 3.2 Format passes: `npm run format:check`
+- [x] 3.1 Types, lint and unit tests pass — c5f17bd
+- [x] 3.2 Format passes: `npm run format:check` — c5f17bd
 
 ### Phase 4: Kandydaci list
 
 #### Automated
 
-- [ ] 4.1 Types, lint and unit tests pass
-- [ ] 4.2 Existing e2e journeys still pass unchanged: `npm run test:e2e`
+- [x] 4.1 Types, lint and unit tests pass
+- [x] 4.2 Existing e2e journeys still pass unchanged: `npm run test:e2e`
 
 ### Phase 5: Moje oferty landing
 
