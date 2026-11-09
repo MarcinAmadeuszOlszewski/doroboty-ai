@@ -1,7 +1,7 @@
 ---
 change_id: case-forge-exp-7
 title: Case Forge exp-7 — prototyp wybranego rozwiązania z discovery
-status: implementing
+status: implemented
 created: 2026-11-09
 updated: 2026-11-09
 archived_at: null

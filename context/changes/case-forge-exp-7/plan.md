@@ -509,14 +509,14 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 - [x] 2.1 Seed and logic tests pass: `npx vitest run src/features/prototype/p11.test.ts` — c79e771
 - [x] 2.2 Existing unit suite still passes: `npm test` — c79e771
 - [x] 2.3 Types pass: `npm run typecheck` — c79e771
-- [x] 2.4 Participant packet check passes: `npm run verify:packet`
+- [x] 2.4 Participant packet check passes: `npm run verify:packet` — 87c4061
 
 ### Phase 3: Facilitator setup
 
 #### Automated
 
 - [x] 3.1 Types, lint and unit tests pass — c5f17bd
-- [x] 3.2 Format passes: `npm run format:check`
+- [x] 3.2 Format passes: `npm run format:check` — 87c4061
 
 ### Phase 4: Kandydaci list
 
@@ -535,8 +535,8 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 #### Automated
 
-- [x] 6.1 Full gate passes: `./scripts/verify`
-- [x] 6.2 Poster People kit untouched: `npm run design-system:check`
+- [x] 6.1 Full gate passes: `./scripts/verify` — 87c4061
+- [x] 6.2 Poster People kit untouched: `npm run design-system:check` — 87c4061
 - [x] 6.3 Missing Playwright Chromium reported, not installed — 731d880
 
 ### Phase 7: Manual verification (after all phases)
