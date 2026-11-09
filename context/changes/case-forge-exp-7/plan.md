@@ -512,7 +512,7 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 #### Automated
 
-- [x] 5.1 Types, lint and unit tests pass
+- [x] 5.1 Types, lint and unit tests pass — b6effbb
 
 ### Phase 6: E2E, docs and gate
 
@@ -520,7 +520,7 @@ There is no migration. `State` stays version 1. Existing saves keep working, and
 
 - [ ] 6.1 Full gate passes: `./scripts/verify`
 - [ ] 6.2 Poster People kit untouched: `npm run design-system:check`
-- [ ] 6.3 Missing Playwright Chromium reported, not installed
+- [x] 6.3 Missing Playwright Chromium reported, not installed
 
 ### Phase 7: Manual verification (after all phases)
 

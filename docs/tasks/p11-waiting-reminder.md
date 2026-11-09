@@ -31,4 +31,20 @@ Email or notification delivery, scheduler, experiment assignment or exposure log
 
 ## Evidence
 
-Filled in at the end of Phase 6.
+Run on 2026-11-09, Windows, Node v26.13.0 (project targets Node 24), `core.autocrlf=true`.
+
+| Check                                                                                                  | Result                                                                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `npx vitest run src/features/prototype/p11.test.ts`                                                    | 12 passed                                                                                                                                                              |
+| `npm test`                                                                                             | 6 files, 39 tests passed                                                                                                                                               |
+| `npm run typecheck`, `npm run lint`                                                                    | passed                                                                                                                                                                 |
+| `npm run build`                                                                                        | passed                                                                                                                                                                 |
+| e2e, full suite incl. new P11 journey (axe on Kandydaci with reminder ON, 390 px no horizontal scroll) | 35 passed with `--workers=1` (see environment notes for the local Chromium)                                                                                            |
+| `npx prettier --check` on every file P11 touched                                                       | passed                                                                                                                                                                 |
+| `./scripts/verify` as a whole                                                                          | **fails in this checkout** at `format:check` (146 files, all CRLF working copies; none are P11 files)                                                                  |
+| `npm run design-system:check`                                                                          | **fails in this checkout** ("Agent-kit reference changed: .nvmrc", hash vs CRLF working copy); `git diff HEAD -- docs/design-system` is empty, so the kit is unchanged |
+| `npm run verify:packet`                                                                                | fails here for the same CRLF reason; passes on the committed LF blobs                                                                                                  |
+
+Screenshot: `artifacts/p11-kandydaci-mobile.png` (390 px, reminder ON, queue A after one invite).
+
+Not run: manual dry run of the session script (Phase 7), CI, any human review.

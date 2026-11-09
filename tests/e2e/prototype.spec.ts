@@ -995,3 +995,69 @@ test("candidate snapshot supports custom CV and long content at desktop and mobi
     record.answer,
   );
 });
+
+test("P11 session: load queue, reminder cues, filter, clearing and the OFF variant", async ({
+  page,
+}) => {
+  const reminderName = "Przypomnienie o czekających zgłoszeniach";
+  const banner = page.getByRole("region", { name: reminderName });
+  const checkbox = page.getByRole("checkbox", {
+    name: "Przypomnienie o czekających zgłoszeniach w tej rundzie",
+  });
+  await page.goto("/#/app/settings");
+  await page.getByRole("button", { name: "Załaduj kolejkę A", exact: true }).click();
+  await page.getByRole("button", { name: "Załaduj", exact: true }).click();
+  await expect(page.getByRole("status")).toContainText("Załadowano sesję P11 · kolejka A");
+  await expect(page.getByRole("status")).toContainText("(UTC 20");
+
+  await choose(page, "Karolina Wiśniewska");
+  await expect(page.getByRole("heading", { name: "Moje oferty" })).toBeVisible();
+  await expect(banner).toContainText("4 zgłoszenia czekają ponad 3 dni");
+  await expect(page.getByText("2 czekają ponad 3 dni", { exact: false })).toHaveCount(2);
+
+  await banner.getByRole("link", { name: "Pokaż je", exact: true }).click();
+  await expect(page.locator("article")).toHaveCount(4);
+  await expect(page.locator("article", { hasText: "Czeka" })).toHaveCount(4);
+  await expect(banner).toContainText("4 zgłoszenia czekają ponad 3 dni");
+  await page.getByRole("link", { name: "Piotr Maj", exact: true }).click();
+  await page.getByRole("button", { name: "Zaproszenie na rozmowę", exact: true }).click();
+
+  await page
+    .getByRole("navigation", { name: "Ścieżka nawigacji" })
+    .getByRole("link", { name: "Kandydaci", exact: true })
+    .click();
+  await expect(banner).toContainText("3 zgłoszenia czekają ponad 3 dni");
+  await page.reload();
+  await expect(banner).toContainText("3 zgłoszenia czekają ponad 3 dni");
+
+  await page.goto("/#/app/kandydaci");
+  await expect(page.locator("article")).toHaveCount(8);
+  const orderOn = await page.locator("article a").allTextContents();
+  await banner.getByRole("link", { name: "Pokaż je", exact: true }).click();
+  await expect(page.locator("article")).toHaveCount(3);
+  await page.getByRole("link", { name: "Pokaż wszystkie zgłoszenia", exact: true }).click();
+  await expect(page.locator("article")).toHaveCount(8);
+  expect(await page.locator("article a").allTextContents()).toEqual(orderOn);
+
+  const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
+  expect(results.violations).toEqual([]);
+  await page.setViewportSize({ width: 390, height: 900 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  await page.screenshot({ path: "artifacts/p11-kandydaci-mobile.png", fullPage: true });
+  await page.setViewportSize({ width: 1280, height: 900 });
+
+  await page.goto("/#/app/settings");
+  await checkbox.uncheck();
+  await expect(page.getByText("Przypomnienie: wyłączone", { exact: true })).toBeVisible();
+  await page.reload();
+  await expect(checkbox).not.toBeChecked();
+  await page.goto("/#/app/kandydaci?czeka");
+  await expect(banner).toHaveCount(0);
+  await expect(page.locator("article")).toHaveCount(8);
+  await expect(page.locator("main")).not.toContainText("Czeka");
+  await expect(page.locator("main")).toContainText("Zgłoszenie");
+  expect(await page.locator("article a").allTextContents()).toEqual(orderOn);
+  await page.goto("/#/app/oferty");
+  await expect(banner).toHaveCount(0);
+  await expect(page.locator("main")).not.toContainText("ponad 3 dni");
+});
