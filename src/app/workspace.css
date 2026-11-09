@@ -1037,6 +1037,14 @@ code {
   display: block;
   margin-bottom: var(--gui-space-m);
 }
+@media (max-width: 767px) {
+  .waiting-reminder-link,
+  .waiting-reminder-all {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+}
 .waiting-reminder-link:focus-visible,
 .waiting-reminder-all:focus-visible {
   outline: 2px solid var(--gui-focus);
@@ -1046,8 +1054,10 @@ code {
   display: inline-flex;
   align-items: center;
   gap: var(--gui-space-xxs);
-  font-weight: 600;
   color: var(--foreground);
+}
+.waiting-cue strong {
+  font-weight: 600;
 }
 .waiting-cue-icon {
   width: 16px;

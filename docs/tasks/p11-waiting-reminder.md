@@ -26,7 +26,7 @@ Email or notification delivery, scheduler, experiment assignment or exposure log
 ## Environment notes
 
 - `npm run verify:packet` fails in this Windows checkout both before and after the P11 changes: `core.autocrlf=true` turns `public/case/baseline.csv` into CRLF while the script compares against LF output. Run against the committed (LF) blobs (`git show HEAD:...` into a temp root) it passes: "Baseline packet verified: 120 journeys". The P11 changes do not touch the packet.
-- Playwright's expected Chromium build (1243) is not installed here; only 1223 is. Nothing was installed. E2E runs use an untracked, uncommitted `playwright.local.config.ts` that points `executablePath` at the installed 1223 headless shell. With the default 8 workers two heavy journeys timed out at 30 s (both pass in isolation); with `--workers=2` all 34 passed.
+- Playwright's expected Chromium build (1243) is not installed here; only 1223 is. Nothing was installed. E2E runs used a temporary `playwright.local.config.ts` (deleted afterwards) that spread the base config and added `use.launchOptions.executablePath` pointing at `%LOCALAPPDATA%/ms-playwright/chromium_headless_shell-1223/chrome-headless-shell-win64/chrome-headless-shell.exe`; invocation: `npx playwright test -c playwright.local.config.ts --workers=1` after `npm run build`. With the default 8 workers two heavy journeys timed out at 30 s (both pass in isolation); with `--workers=2` all 34 passed.
 - `npm run format:check` fails repo-wide in this checkout (CRLF working copies vs `endOfLine: lf`); the files touched by P11 pass `prettier --check`.
 
 ## Evidence

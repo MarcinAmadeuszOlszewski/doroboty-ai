@@ -38,8 +38,11 @@ function pluralForm(n: number, one: string, few: string, many: string): string {
 export function waitingSummary(count: number): string {
   return `${count} ${pluralForm(count, "zgłoszenie czeka", "zgłoszenia czekają", "zgłoszeń czeka")} ponad ${WAIT_THRESHOLD_DAYS} dni`;
 }
+export function daysCount(n: number): string {
+  return `${n} ${n === 1 ? "dzień" : "dni"}`;
+}
 export function daysLabel(n: number): string {
-  return `Czeka ${n} ${n === 1 ? "dzień" : "dni"}`;
+  return `Czeka ${daysCount(n)}`;
 }
 export function waitingCountLabel(n: number): string {
   return `${n} ${pluralForm(n, "czeka", "czekają", "czeka")} ponad ${WAIT_THRESHOLD_DAYS} dni`;

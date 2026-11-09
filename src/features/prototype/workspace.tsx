@@ -17,7 +17,7 @@ import { MatchScore } from "./match-score";
 import { RecruitingApplication } from "./recruiting-application";
 import { CandidateApplication } from "./candidate-application";
 import { WaitingReminder } from "./waiting-reminder";
-import { daysLabel, isOverdue, isP11Session, isWaiting, waitingDays } from "./p11";
+import { daysCount, daysLabel, isOverdue, isP11Session, isWaiting, waitingDays } from "./p11";
 
 const submittedDate = new Intl.DateTimeFormat("pl-PL", {
   day: "numeric",
@@ -487,7 +487,7 @@ export function ApplicationsPage({ employer = false }: { employer?: boolean }) {
                       {isOverdue(a, now) ? (
                         <span className="waiting-cue">
                           <Clock aria-hidden="true" className="waiting-cue-icon" />
-                          {daysLabel(waitingDays(a, now))}
+                          Czeka <strong>{daysCount(waitingDays(a, now))}</strong>
                         </span>
                       ) : (
                         daysLabel(waitingDays(a, now))
