@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { PostHogErrorBoundary, PostHogProvider } from "@posthog/react";
 import posthog from "posthog-js";
 import { App } from "./features/prototype/app";
+import { AppErrorBoundary } from "./features/prototype/error-boundary";
 import "./app/globals.css";
 
 const posthogToken = import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN;
@@ -29,10 +30,12 @@ if (posthogToken && posthogHost) {
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <PostHogProvider client={posthog}>
-      <PostHogErrorBoundary>
-        <App />
-      </PostHogErrorBoundary>
-    </PostHogProvider>
+    <AppErrorBoundary>
+      <PostHogProvider client={posthog}>
+        <PostHogErrorBoundary>
+          <App />
+        </PostHogErrorBoundary>
+      </PostHogProvider>
+    </AppErrorBoundary>
   </StrictMode>,
 );
