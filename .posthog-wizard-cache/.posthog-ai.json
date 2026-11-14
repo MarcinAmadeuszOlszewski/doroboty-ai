@@ -1,0 +1,5 @@
+{
+  "provider": "manual-capture",
+  "package": "posthog-js",
+  "otel_init_file": "not-applicable-no-llm-calls"
+}
