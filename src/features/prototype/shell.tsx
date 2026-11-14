@@ -67,8 +67,9 @@ const employerNav = [
   ["/app/organizacja", "Organizacja", Building2],
 ] as const;
 export function Shell() {
-  const { state, issue, error, clearError } = usePrototype();
+  const { state, issue, error, clearError, run } = usePrototype();
   const person = currentPerson(state);
+  const changePerson = () => run({ type: "select_person", id: null });
   const { pathname } = useLocation();
   const workspace = pathname.startsWith("/app") && person;
   const [menuAt, setMenuAt] = useState<string | null>(null);
@@ -181,7 +182,7 @@ export function Shell() {
               <Link className="nav-link" to="/oferty">
                 Wszystkie oferty
               </Link>
-              <Link className="nav-link" to="/auth/sign-in">
+              <Link className="nav-link" to="/auth/sign-in" onClick={changePerson}>
                 Zmień osobę
               </Link>
             </nav>
@@ -195,7 +196,9 @@ export function Shell() {
                     ? "Strefa pracodawcy"
                     : "Case study"}
               </span>
-              <Link to="/auth/sign-in">{person.name}</Link>
+              <Link to="/auth/sign-in" onClick={changePerson}>
+                {person.name}
+              </Link>
             </div>
             <main id="main" ref={main} tabIndex={-1} className="main-content outline-none">
               {content}
@@ -258,6 +261,7 @@ export function Shell() {
                         "hidden md:inline-flex",
                       )}
                       to="/auth/sign-in"
+                      onClick={changePerson}
                       aria-label="Zmień osobę"
                       title="Zmień osobę"
                     >

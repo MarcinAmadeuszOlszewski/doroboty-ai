@@ -1,5 +1,6 @@
 import { Link, useLocation, useParams, useSearchParams } from "react-router";
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import { usePostHog } from "@posthog/react";
 import { ArrowUpRight, Users, MapPin, BriefcaseBusiness, Bookmark } from "lucide-react";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Search, ArrowRight, Monitor, X } from "lucide-react";
@@ -98,6 +99,7 @@ function LocalMap({ jobs }: { jobs: JobWithCompany[] }) {
 }
 export function JobsPage() {
   const { state } = usePrototype();
+  const posthog = usePostHog();
   const person = currentPerson(state);
   const [params, setParams] = useSearchParams();
   const filters = parseJobFilters(Object.fromEntries(params));
@@ -146,6 +148,12 @@ export function JobsPage() {
       if (value) next.set(key, value);
       else next.delete(key);
     }
+    const searchFilters = parseJobFilters(Object.fromEntries(next));
+    posthog.capture("job_search_submitted", {
+      has_query: Boolean(searchFilters.query),
+      has_location: Boolean(searchFilters.location),
+      result_count: filterJobs(all, searchFilters).length,
+    });
     setParams(next);
   }
   const locations = [...new Set(all.flatMap((x) => x.locations))];
@@ -324,6 +332,7 @@ export function JobsPage() {
 
 export function JobPage() {
   const { slug } = useParams();
+  const posthog = usePostHog();
   const location = useLocation();
   useEffect(() => {
     const target =
@@ -426,7 +435,14 @@ export function JobPage() {
                     variant="outline"
                     aria-label="Zapisz ofertę"
                     aria-pressed={saved}
-                    onClick={() => run({ type: "toggle_saved", jobId: job.id })}
+                    onClick={() => {
+                      if (run({ type: "toggle_saved", jobId: job.id })) {
+                        posthog.capture(saved ? "job_unsaved" : "job_saved", {
+                          job_category: job.category,
+                          job_function: job.function,
+                        });
+                      }
+                    }}
                   >
                     <Bookmark className={cn(saved && "fill-current")} />
                     Zapisz ofertę
