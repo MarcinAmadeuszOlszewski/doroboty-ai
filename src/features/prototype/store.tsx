@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
-import { initialState, transition, type Action, type State } from "./model";
+import { usePostHog } from "@posthog/react";
+import { currentPerson, initialState, transition, type Action, type State } from "./model";
 import { parseState, readState, saveState, type StoragePort } from "./storage";
 function browserStorage(): StoragePort | null {
   try {
@@ -68,9 +69,38 @@ function useStore() {
 }
 type Store = ReturnType<typeof useStore>;
 const Context = createContext<Store | null>(null);
+
+function PostHogIdentity() {
+  const { state } = usePrototype();
+  const posthog = usePostHog();
+  const identifiedPersonId = useRef<string | null>(null);
+  const person = currentPerson(state);
+
+  useEffect(() => {
+    if (!person) {
+      if (identifiedPersonId.current !== null) posthog.reset();
+      identifiedPersonId.current = null;
+      return;
+    }
+
+    if (identifiedPersonId.current === person.id) return;
+    if (identifiedPersonId.current !== null) posthog.reset();
+
+    posthog.identify(person.id, { name: person.name, role: person.role });
+    identifiedPersonId.current = person.id;
+  }, [person, posthog]);
+
+  return null;
+}
+
 export function PrototypeProvider({ children }: { children: ReactNode }) {
   const store = useStore();
-  return <Context.Provider value={store}>{children}</Context.Provider>;
+  return (
+    <Context.Provider value={store}>
+      <PostHogIdentity />
+      {children}
+    </Context.Provider>
+  );
 }
 export function usePrototype() {
   const store = useContext(Context);
