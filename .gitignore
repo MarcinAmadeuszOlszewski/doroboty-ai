@@ -13,3 +13,6 @@ npm-debug.log*
 /.github/
 /.idea/
 /do-zaliczenia/
+.env
+
+.env
