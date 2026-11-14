@@ -1066,3 +1066,20 @@ test("P11 session: load queue, reminder cues, filter, clearing and the OFF varia
   await expect(banner).toHaveCount(0);
   await expect(page.locator("main")).not.toContainText("ponad 3 dni");
 });
+
+test("two tabs of one browser keep each other's saved offers", async ({ context }) => {
+  const a = await context.newPage();
+  const b = await context.newPage();
+  await choose(a, "Anna Kowalska");
+  await b.goto("/#/app/zapisane");
+  await a.goto("/#/oferty/ai-product-manager");
+  await a.getByRole("button", { name: "Zapisz ofertę", exact: true }).click();
+  // The second tab was already open: it must pick up the save without a reload.
+  await expect(b.getByRole("link", { name: "AI Product Manager" }).first()).toBeVisible();
+  await b.goto("/#/oferty/ai-operations-specialist");
+  await b.getByRole("button", { name: "Zapisz ofertę", exact: true }).click();
+  await a.reload();
+  await a.goto("/#/app/zapisane");
+  await expect(a.getByRole("link", { name: "AI Product Manager" }).first()).toBeVisible();
+  await expect(a.getByRole("link", { name: "AI Operations Specialist" }).first()).toBeVisible();
+});

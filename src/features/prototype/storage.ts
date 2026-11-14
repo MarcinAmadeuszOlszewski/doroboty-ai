@@ -63,3 +63,17 @@ export function saveState(storage: StoragePort | null, state: State) {
     );
   }
 }
+/** Keep the signed-in persona across a state replace when it still exists, so the workspace shell stays. */
+export function keepActivePerson(next: State, activePersonId: string | null): State {
+  return activePersonId !== null && next.people.some((x) => x.id === activePersonId)
+    ? { ...next, activePersonId }
+    : next;
+}
+/**
+ * Adopt a save written by another tab. Each tab keeps its own signed-in persona so a candidate tab and
+ * an employer tab can stay side by side. Throws when the incoming save is unreadable; the caller keeps
+ * the current state and must not write it back over the other tab's data.
+ */
+export function adoptExternalState(raw: string, activePersonId: string | null): State {
+  return keepActivePerson(parseState(raw), activePersonId);
+}

@@ -1,6 +1,14 @@
 import { createContext, useContext, useEffect, useRef, useState, type ReactNode } from "react";
 import { initialState, transition, type Action, type State } from "./model";
-import { parseState, readState, saveState, type StoragePort } from "./storage";
+import {
+  STORAGE_KEY,
+  adoptExternalState,
+  keepActivePerson,
+  parseState,
+  readState,
+  saveState,
+  type StoragePort,
+} from "./storage";
 import {
   buildP11Session,
   readLoadInfo,
@@ -16,12 +24,6 @@ function browserStorage(): StoragePort | null {
   } catch {
     return null;
   }
-}
-/** Keep the signed-in persona across a replace when it still exists, so the workspace shell stays. */
-function keepActivePerson(next: State, activePersonId: string | null): State {
-  return activePersonId !== null && next.people.some((x) => x.id === activePersonId)
-    ? { ...next, activePersonId }
-    : next;
 }
 function useStore() {
   const [loaded] = useState(() => readState(browserStorage()));
@@ -87,6 +89,27 @@ function useStore() {
   useEffect(() => {
     document.documentElement.classList.remove("dark");
   }, []);
+  // Another tab saved a new scenario: adopt it instead of overwriting it with this tab's older state.
+  useEffect(() => {
+    if (blocked) return;
+    function onStorage(e: StorageEvent) {
+      if (e.key !== STORAGE_KEY || e.newValue === null || e.storageArea !== browserStorage())
+        return;
+      try {
+        const next = adoptExternalState(e.newValue, latest.current.activePersonId);
+        latest.current = next;
+        setState(next);
+        setError("");
+      } catch {
+        setIssue(
+          "Inna karta zapisała dane, których nie da się odczytać. Ta karta zachowuje swój stan i nie nadpisze tamtych danych, dopóki ich nie wyeksportujesz lub nie zresetujesz.",
+        );
+        setBlocked(true);
+      }
+    }
+    window.addEventListener("storage", onStorage);
+    return () => window.removeEventListener("storage", onStorage);
+  }, [blocked]);
   return {
     state,
     issue,
