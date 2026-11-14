@@ -12,15 +12,15 @@ Provider facts below were read from the Vercel documentation on 2026-11-14 (Vite
 ## One-time setup (repository owner)
 
 1. Create a Vercel account on the Hobby plan and connect the GitHub repository `MarcinAmadeuszOlszewski/doroboty-ai`.
-2. Project settings: framework preset Vite, install command `npm ci`, build command `npm run build`, output directory `dist`. Production branch: `main`.
+2. Project settings: framework preset Vite, install command `npm ci`, build command `npm run build`, output directory `dist`. Production branch: `case-forge` (the prototype is tested from this branch, not from `main`; the owner confirmed this on 2026-11-14).
 3. Node.js version: `package.json` declares `engines.node` as `24.x`, matching `.nvmrc` and CI. Vercel documents that `engines` overrides the project setting, so builds use the latest Node 24. Local checks recorded in docs/production-readiness.html ran on Node 26 and the full gate still needs one run on Node 24.
 4. Settings → Deployment Protection: keep "Standard Protection". It leaves the production domain public. "All Deployments" would make participants sign in to Vercel. Preview deployments stay protected.
 5. Do not add environment variables; the app needs none.
 
 ## Release procedure
 
-1. Merge the change to `main` after `./scripts/verify` passes on Node 24 (CI does this).
-2. Vercel builds every push; the production deployment is tied to the commit SHA. Note the commit and the deployment URL.
+1. Push the change to `case-forge` after `./scripts/verify` passes on Node 24, or confirm it in CI.
+2. Vercel builds every push to the production branch; the production deployment is tied to the commit SHA. Note the commit and the deployment URL.
 3. Run docs/smoke-plan.md against the production address.
 
 ## Rollback
